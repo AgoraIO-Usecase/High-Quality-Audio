@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.ArrayRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -20,13 +19,13 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
 
     private List<ChangeVoiceItem> mChangeVoiceItems;
 
-    public VoiceChangeAdapter(Context context, @ArrayRes int resId) {
+    public VoiceChangeAdapter(Context context) {
         this.mInflater = LayoutInflater.from(context);
-        initVoiceItems(context, resId);
+        initVoiceItems(context);
     }
 
-    private void initVoiceItems(Context context, @ArrayRes int resId) {
-        String[] titles = context.getResources().getStringArray(resId);
+    private void initVoiceItems(Context context) {
+        String[] titles = context.getResources().getStringArray(R.array.sound_effects);
         mChangeVoiceItems = new ArrayList<>(titles.length);
         for (String title : titles) {
             mChangeVoiceItems.add(new ChangeVoiceItem(title));
@@ -34,7 +33,7 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VoiceChangeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.change_voice_item, parent, false);
         return new ViewHolder(view);
     }
