@@ -21,16 +21,7 @@ public class AgoraApplication extends Application {
             mRtcEngine = RtcEngine.create(getApplicationContext(), getString(R.string.app_id), mHandler);
             mRtcEngine.enableAudioVolumeIndication(
                     io.agora.highqualityaudio.utils.Constants.VOLUME_INDICATE_INTERVAL,
-                    io.agora.highqualityaudio.utils.Constants.VOLUME_INDICATE_SMOOTH);
-
-            mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
-            mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY,
-                    Constants.AUDIO_SCENARIO_GAME_STREAMING);
-
-            // High quality audio parameters
-            mRtcEngine.setParameters("{\"che.audio.specify.codec\":\"HEAAC_2ch\"}");
-
-            mRtcEngine.setLogFile(FileUtil.initializeLogFile(this));
+                    io.agora.highqualityaudio.utils.Constants.VOLUME_INDICATE_SMOOTH, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
