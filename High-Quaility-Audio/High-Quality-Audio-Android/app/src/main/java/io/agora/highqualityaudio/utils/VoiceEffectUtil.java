@@ -2,34 +2,9 @@ package io.agora.highqualityaudio.utils;
 
 import io.agora.rtc.RtcEngine;
 
+import static io.agora.rtc.Constants.*;
+
 public class VoiceEffectUtil {
-    public static final int VOICE_CHANGER_OFF = 0x00000000;
-
-    public static final int VOICE_BEAUTY_VIGOROUS = 0x00100001;
-    public static final int VOICE_BEAUTY_DEEP = 0x00100002;
-    public static final int VOICE_BEAUTY_MELLOW = 0x00100003;
-    public static final int VOICE_BEAUTY_FALSETTO = 0x00100004;
-    public static final int VOICE_BEAUTY_FULL = 0x00100005;
-    public static final int VOICE_BEAUTY_CLEAR = 0x00100006;
-    public static final int VOICE_BEAUTY_RESOUNDING = 0x00100007;
-    public static final int VOICE_BEAUTY_RINGING = 0x00100008;
-    public static final int VOICE_BEAUTY_SPACIAL = 0x00100009;
-
-    public static final int GENERAL_BEAUTY_VOICE_MALE_MAGNETIC = 0x00200001;
-    public static final int GENERAL_BEAUTY_VOICE_FEMALE_FRESH = 0x00200002;
-    public static final int GENERAL_BEAUTY_VOICE_FEMALE_VITALITY = 0x00200003;
-
-    public static final int AUDIO_REVERB_FX_KTV = 0x00100001;
-    public static final int AUDIO_REVERB_FX_VOCAL_CONCERT = 0x00100002;
-    public static final int AUDIO_REVERB_FX_UNCLE = 0x00100003;
-    public static final int AUDIO_REVERB_FX_SISTER = 0x00100004;
-    public static final int AUDIO_REVERB_FX_STUDIO = 0x00100005;
-    public static final int AUDIO_REVERB_FX_POPULAR = 0x00100006;
-    public static final int AUDIO_REVERB_FX_RNB = 0x00100007;
-    public static final int AUDIO_REVERB_FX_PHONOGRAPH = 0x00100008;
-
-    public static final int AUDIO_VIRTUAL_STEREO = 0x00200001;
-
     public static final int[] VOICE_CHANGE_PRESET = {
             VOICE_CHANGER_OFF,
             VOICE_BEAUTY_VIGOROUS,

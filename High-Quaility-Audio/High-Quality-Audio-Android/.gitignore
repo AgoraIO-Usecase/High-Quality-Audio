@@ -1,6 +1,10 @@
+agora-rtc-sdk.jar
+*.so
+include
 *.iml
 .gradle
 /local.properties
+/.idea/codeStyles
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
