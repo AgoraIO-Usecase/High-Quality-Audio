@@ -1,0 +1,9 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+install:
+- cmd: cd High-Quaility-Audio\High-Quality-Audio-Windows
+build_script:
+- cmd: call build_appveyor_release.bat 3_0_0 3.0.0 C:\Qt\5.13.2\msvc2017 AgoraHighSound x86
+artifacts:
+- path: High-Quaility-Audio\High-Quality-Audio-Windows\AgoraHighSound_Win_v3.0.0.zip
+  name: AgoraHighSound
