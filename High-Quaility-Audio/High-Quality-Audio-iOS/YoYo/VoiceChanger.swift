@@ -47,7 +47,9 @@ struct VoiceChanger {
     static func genderedList() -> [Improve] {
         return [.generalBeautyVoiceMaleMagnetic,
                 .generalBeautyVoiceFemaleFresh,
-                .generalBeautyVoiceFemaleVitality]
+                .generalBeautyVoiceFemaleVitality,
+                .generalBeautySingMale,
+                .generalBeautySingFemale]
     }
     
     static func adjList() -> [Improve] {
@@ -131,6 +133,8 @@ extension VoiceChanger.Improve: CSDescriptable {
         case .generalBeautyVoiceMaleMagnetic:   return "磁性（男）"
         case .generalBeautyVoiceFemaleFresh:    return "清新（女）"
         case .generalBeautyVoiceFemaleVitality: return "活力（女）"
+        case .generalBeautySingMale:   return "歌唱美声（男）"
+        case .generalBeautySingFemale:    return "歌唱美声（女）"
         default: fatalError()
         }
     }
