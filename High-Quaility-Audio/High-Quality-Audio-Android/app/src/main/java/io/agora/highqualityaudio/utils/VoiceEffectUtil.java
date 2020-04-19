@@ -22,7 +22,9 @@ public class VoiceEffectUtil {
             VOICE_CHANGER_OFF,
             GENERAL_BEAUTY_VOICE_MALE_MAGNETIC,
             GENERAL_BEAUTY_VOICE_FEMALE_FRESH,
-            GENERAL_BEAUTY_VOICE_FEMALE_VITALITY
+            GENERAL_BEAUTY_VOICE_FEMALE_VITALITY,
+            GENERAL_BEAUTY_SING_MALE,
+            GENERAL_BEAUTY_SING_FEMALE
     };
 
     public static final int[] SOUND_EFFECT_PRESET = {

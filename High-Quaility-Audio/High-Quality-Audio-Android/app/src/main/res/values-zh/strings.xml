@@ -41,6 +41,8 @@
         <item>磁性（男）</item>
         <item>清新（女）</item>
         <item>活力（女）</item>
+        <item>歌唱美声（男）</item>
+        <item>歌唱美声（女）</item>
     </string-array>
 
     <string-array name="sound_effect_items">

@@ -41,6 +41,8 @@
         <item>Male Magnetic</item>
         <item>Female Fresh</item>
         <item>Female vitality</item>
+        <item>Male Sing</item>
+        <item>Female Sing</item>
     </string-array>
 
     <string-array name="sound_effect_items">
