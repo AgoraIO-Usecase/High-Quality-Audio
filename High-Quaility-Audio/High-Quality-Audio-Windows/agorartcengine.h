@@ -44,6 +44,9 @@ public:
     Q_INVOKABLE int getVoiceChanger();
     Q_INVOKABLE int getBeautyVoice();
     agora::rtc::IRtcEngine* getRtcEngine() {return m_rtcEngine;}
+    agora::rtc::AUDIO_REVERB_PRESET getReverbPreset(int index);
+    agora::rtc::VOICE_CHANGER_PRESET getVoiceChangerPreset(int index);
+    agora::rtc::VOICE_CHANGER_PRESET getBeautyVoicePreset(int index);
 signals:
     void joiningChannel();
     void leavingChannel();

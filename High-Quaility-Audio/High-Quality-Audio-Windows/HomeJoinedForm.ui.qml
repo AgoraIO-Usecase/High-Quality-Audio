@@ -106,6 +106,8 @@ Rectangle {
             ListElement {text: "磁性"}
             ListElement {text: "清新"}
             ListElement {text: "活力"}
+            ListElement {text: "歌唱美声(男)"}
+            ListElement {text: "歌唱美声(女)"}
         }
     }
 
