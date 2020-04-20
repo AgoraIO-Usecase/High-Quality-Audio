@@ -359,93 +359,31 @@ int AgoraRtcEngine::testCamera(bool start, QQuickItem* view)
 	return 0;
 }
 
-AUDIO_REVERB_PRESET AgoraRtcEngine::getReverbPreset(int index)
-{
-    switch(index){
-    case 0:
-        return AUDIO_REVERB_OFF;
-    case 1:
-        return AUDIO_REVERB_KTV;
-    case 2:
-        return AUDIO_REVERB_VOCAL_CONCERT;
-    case 3:
-        return AUDIO_REVERB_FX_UNCLE;
-    case 4:
-        return AUDIO_REVERB_FX_SISTER;
-    case 5:
-        return AUDIO_REVERB_FX_STUDIO;
-    case 6:
-        return AUDIO_REVERB_FX_POPULAR;
-    case 7:
-        return AUDIO_REVERB_FX_RNB;
-    case 8:
-        return AUDIO_REVERB_FX_PHONOGRAPH;
-    }
-    return AUDIO_REVERB_OFF;
-}
-
-VOICE_CHANGER_PRESET AgoraRtcEngine::getVoiceChangerPreset(int index)
-{
-    switch(index){
-    case 0:
-        return VOICE_CHANGER_OFF;
-    case 1:
-        return VOICE_BEAUTY_VIGOROUS;
-    case 2:
-        return VOICE_BEAUTY_DEEP;
-    case 3:
-        return VOICE_BEAUTY_MELLOW;
-    case 4:
-        return VOICE_BEAUTY_FALSETTO;
-    case 5:
-        return VOICE_BEAUTY_FULL;
-    case 6:
-        return VOICE_BEAUTY_CLEAR;
-    case 7:
-        return VOICE_BEAUTY_RESOUNDING;
-    case 8:
-        return VOICE_BEAUTY_RINGING;
-    case 9:
-        return VOICE_BEAUTY_SPACIAL;
-    }
-    return VOICE_CHANGER_OFF;
-}
-
-VOICE_CHANGER_PRESET AgoraRtcEngine::getBeautyVoicePreset(int index)
-{
-    switch(index){
-    case 0:
-        return VOICE_CHANGER_OFF;
-    case 1:
-        return GENERAL_BEAUTY_VOICE_MALE_MAGNETIC;
-    case 2:
-        return GENERAL_BEAUTY_VOICE_FEMALE_FRESH;
-    case 3:
-        return GENERAL_BEAUTY_VOICE_FEMALE_VITALITY;
-    case 4:
-        return GENERAL_BEAUTY_SING_MALE;
-    case 5:
-        return GENERAL_BEAUTY_SING_FEMALE;
-    }
-    return VOICE_CHANGER_OFF;
-}
-
 //0:关闭 ，1:KTV，2:演唱会，3:大叔，4:小姐姐，5:录音棚，7:流行，8:R&B，9:留声机
 void AgoraRtcEngine::setReverbPreset(int index)
 {
-    m_rtcEngine->setLocalVoiceReverbPreset(getReverbPreset((index)));
+    agora::rtc::AParameter apm(m_rtcEngine);
+    apm->setInt( "che.audio.morph.reverb_preset", index);
+
     reverbPresetIndex = index;
 }
 
 void AgoraRtcEngine::setVoiceChanger(int index)
 {
-    m_rtcEngine->setLocalVoiceChanger(getVoiceChangerPreset(index));
+    agora::rtc::AParameter apm(m_rtcEngine);
+    int i = index;
+    if(i>0){
+        i+=6;
+    }
+    apm->setInt( "che.audio.morph.voice_changer", i);
 	voiceChangerIndex = index;
 }
 
 void AgoraRtcEngine::setBeautyVoice(int index)
 {
-    m_rtcEngine->setLocalVoiceChanger(getBeautyVoicePreset(index));
+    agora::rtc::AParameter apm(m_rtcEngine);
+    apm->setInt( "che.audio.morph.beauty_voice", index);
+
     beautyVoiceIndex = index;
 }
 
