@@ -394,7 +394,15 @@ void AgoraRtcEngine::setBeautyVoice(int index)
 {
     //agora::rtc::AParameter apm(m_rtcEngine);
     //apm->setInt( "che.audio.morph.beauty_voice", index);
-    m_rtcEngine->setLocalVoiceChanger((VOICE_CHANGER_PRESET)(index + 0x02000000));
+    if(index >= 0){
+        if(index == 0){
+            m_rtcEngine->setLocalVoiceChanger(VOICE_CHANGER_OFF);
+        } else if(index <= 3){
+            m_rtcEngine->setLocalVoiceChanger((VOICE_CHANGER_PRESET)(index + 0x02000000));
+        } else {
+            m_rtcEngine->setLocalVoiceChanger((VOICE_CHANGER_PRESET)((index-3) + 0x03000000));
+        }
+    }
     beautyVoiceIndex = index;
 }
 
