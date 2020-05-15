@@ -21,8 +21,14 @@ HEADERS += \
 
 
 win32: {
-INCLUDEPATH += $$PWD/sdk/include
-LIBS += -L$$PWD/sdk/lib/ -lagora_rtc_sdk
+    INCLUDEPATH += $$PWD/sdk/include
+    LIBS += -L$$PWD/sdk/lib/ -lagora_rtc_sdk
+    CONFIG(Debug, Debug|Release){
+        QMAKE_POST_LINK += copy sdk\dll\*.dll debug
+    } else {
+        QMAKE_POST_LINK += copy sdk\dll\*.dll release
+        QMAKE_POST_LINK  += && windeployqt Release\AgoraHighSound.exe
+    }
 }
 
 macx:{
