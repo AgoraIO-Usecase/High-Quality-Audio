@@ -529,7 +529,7 @@ public class ChatActivity extends BaseActivity implements EventHandler
         /**https://docs.agora.io/cn/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a24fd6b0d12214f6bc6fa7a9b6235aeff*/
         if(state == REMOTE_AUDIO_STATE_STOPPED && reason == REMOTE_AUDIO_REASON_REMOTE_MUTED)
         {
-            /**远端用户静音*/
+            /**Remote user mute*/
             runOnUiThread(new Runnable()
             {
                 @Override
@@ -541,7 +541,7 @@ public class ChatActivity extends BaseActivity implements EventHandler
         }
         else if(state == REMOTE_AUDIO_STATE_DECODING && reason == REMOTE_AUDIO_REASON_REMOTE_UNMUTED)
         {
-            /**远端用户关闭静音*/
+            /**Remote user turns off mute*/
             runOnUiThread(new Runnable()
             {
                 @Override
@@ -553,7 +553,7 @@ public class ChatActivity extends BaseActivity implements EventHandler
         }
         else if(state == REMOTE_AUDIO_STATE_DECODING)
         {
-            /**相当于被废弃的onFirstRemoteAudioDecoded回调*/
+            /**Equivalent to the abandoned onFirstRemoteAudioDecoded callback*/
         }
     }
 

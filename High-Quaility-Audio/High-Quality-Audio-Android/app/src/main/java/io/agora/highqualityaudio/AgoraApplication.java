@@ -20,8 +20,11 @@ public class AgoraApplication extends Application
         try
         {
             mRtcEngine = RtcEngine.create(getApplicationContext(), getString(R.string.app_id), mHandler);
-            /**启用说话者音量提示;
-             * @param 指定音量提示的时间间隔;@param 指定音量提示的灵敏度; @param 是否开启本地人声检测功能*/
+            /**Enables the onAudioVolumeIndication callback at a set time interval to report on which
+             *  users are speaking and the speakers' volume.;
+             * @param interval Sets the time interval between two consecutive volume indications
+             * @param smooth The smoothing factor sets the sensitivity of the audio volume indicator. ;
+             * @param report_vad Whether to enable the local voice detection function*/
             mRtcEngine.enableAudioVolumeIndication(
                     io.agora.highqualityaudio.utils.Constants.VOLUME_INDICATE_INTERVAL,
                     io.agora.highqualityaudio.utils.Constants.VOLUME_INDICATE_SMOOTH, true);
