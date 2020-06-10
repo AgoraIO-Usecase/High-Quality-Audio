@@ -67,7 +67,7 @@
     <dimen name="room_bottom_btn_margin">14dp</dimen>
 
     <!--  Change voice -->
-    <dimen name="change_voice_item_width">90dp</dimen>
+    <dimen name="change_voice_item_width">100dp</dimen>
     <dimen name="change_voice_item_height">28dp</dimen>
     <dimen name="change_voice_item_margin_horizontal">6dp</dimen>
     <dimen name="change_voice_item_margin_vertical">10dp</dimen>

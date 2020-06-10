@@ -1,47 +1,112 @@
 package io.agora.highqualityaudio.utils;
 
-import java.util.Locale;
-
 import io.agora.rtc.RtcEngine;
 
-public class SoundEffectUtil {
+import static io.agora.rtc.Constants.AUDIO_REVERB_FX_KTV;
+import static io.agora.rtc.Constants.AUDIO_REVERB_FX_PHONOGRAPH;
+import static io.agora.rtc.Constants.AUDIO_REVERB_FX_POPULAR;
+import static io.agora.rtc.Constants.AUDIO_REVERB_FX_RNB;
+import static io.agora.rtc.Constants.AUDIO_REVERB_FX_SISTER;
+import static io.agora.rtc.Constants.AUDIO_REVERB_FX_STUDIO;
+import static io.agora.rtc.Constants.AUDIO_REVERB_FX_UNCLE;
+import static io.agora.rtc.Constants.AUDIO_REVERB_FX_VOCAL_CONCERT;
+import static io.agora.rtc.Constants.AUDIO_REVERB_HIPHOP;
+import static io.agora.rtc.Constants.AUDIO_REVERB_KTV;
+import static io.agora.rtc.Constants.AUDIO_REVERB_OFF;
+import static io.agora.rtc.Constants.AUDIO_REVERB_POPULAR;
+import static io.agora.rtc.Constants.AUDIO_REVERB_RNB;
+import static io.agora.rtc.Constants.AUDIO_REVERB_ROCK;
+import static io.agora.rtc.Constants.AUDIO_REVERB_STUDIO;
+import static io.agora.rtc.Constants.AUDIO_REVERB_VOCAL_CONCERT;
+import static io.agora.rtc.Constants.AUDIO_VIRTUAL_STEREO;
+import static io.agora.rtc.Constants.GENERAL_BEAUTY_VOICE_FEMALE_FRESH;
+import static io.agora.rtc.Constants.GENERAL_BEAUTY_VOICE_FEMALE_VITALITY;
+import static io.agora.rtc.Constants.GENERAL_BEAUTY_VOICE_MALE_MAGNETIC;
+import static io.agora.rtc.Constants.VOICE_BEAUTY_CLEAR;
+import static io.agora.rtc.Constants.VOICE_BEAUTY_DEEP;
+import static io.agora.rtc.Constants.VOICE_BEAUTY_FALSETTO;
+import static io.agora.rtc.Constants.VOICE_BEAUTY_FULL;
+import static io.agora.rtc.Constants.VOICE_BEAUTY_MELLOW;
+import static io.agora.rtc.Constants.VOICE_BEAUTY_RESOUNDING;
+import static io.agora.rtc.Constants.VOICE_BEAUTY_RINGING;
+import static io.agora.rtc.Constants.VOICE_BEAUTY_SPACIAL;
+import static io.agora.rtc.Constants.VOICE_BEAUTY_VIGOROUS;
+import static io.agora.rtc.Constants.VOICE_CHANGER_BABYBOY;
+import static io.agora.rtc.Constants.VOICE_CHANGER_BABYGIRL;
+import static io.agora.rtc.Constants.VOICE_CHANGER_ETHEREAL;
+import static io.agora.rtc.Constants.VOICE_CHANGER_HULK;
+import static io.agora.rtc.Constants.VOICE_CHANGER_OFF;
+import static io.agora.rtc.Constants.VOICE_CHANGER_OLDMAN;
+import static io.agora.rtc.Constants.VOICE_CHANGER_ZHUBAJIE;
+
+public class SoundEffectUtil
+{
     public static final int EFFECT_NONE = 0;
 
-    public static final int VOICE_THICK = 7;
-    public static final int VOICE_LOW = 8;
-    public static final int VOICE_ROUND = 9;
-    public static final int VOICE_FALSETTO = 10;
-    public static final int VOICE_FULL = 11;
-    public static final int VOICE_CLEAR = 12;
-    public static final int VOICE_RESOUNDING = 13;
-    public static final int VOICE_LOUD = 14;
-    public static final int VOICE_OPEN_AIR = 15;
+    private static final int[] BEAUTIFYVOICES = new int[]{
+            VOICE_CHANGER_OFF,
+            GENERAL_BEAUTY_VOICE_FEMALE_VITALITY,
+            GENERAL_BEAUTY_VOICE_FEMALE_FRESH,
+            GENERAL_BEAUTY_VOICE_MALE_MAGNETIC,
+            VOICE_BEAUTY_VIGOROUS,
+            VOICE_BEAUTY_DEEP,
+            VOICE_BEAUTY_MELLOW,
+            VOICE_BEAUTY_FALSETTO,
+            VOICE_BEAUTY_FULL,
+            VOICE_BEAUTY_CLEAR,
+            VOICE_BEAUTY_RESOUNDING,
+            VOICE_BEAUTY_RINGING,
+    };
 
-    public static final int PRESET_KTV = 1;
-    public static final int PRESET_LIVE = 2;
-    public static final int PRESET_UNCLE = 3;
-    public static final int PRESET_GIRL = 4;
-    public static final int PRESET_STUDIO = 5;
-    public static final int PRESET_POP = 7;
-    public static final int PRESET_RNB = 8;
-    public static final int PRESET_PHONOGRAPH = 9;
+    private static final int[] VOICEEFFECTS = new int[]{
+            AUDIO_REVERB_OFF,
+            AUDIO_REVERB_KTV,
+            AUDIO_REVERB_FX_KTV,
+            AUDIO_REVERB_VOCAL_CONCERT,
+            AUDIO_REVERB_FX_VOCAL_CONCERT,
+            AUDIO_REVERB_STUDIO,
+            AUDIO_REVERB_FX_STUDIO,
+            AUDIO_REVERB_FX_PHONOGRAPH,
+            AUDIO_VIRTUAL_STEREO,
+            AUDIO_REVERB_FX_UNCLE,
+            AUDIO_REVERB_FX_SISTER,
+            AUDIO_REVERB_RNB,
+            AUDIO_REVERB_FX_RNB,
+            AUDIO_REVERB_POPULAR,
+            AUDIO_REVERB_FX_POPULAR,
+            AUDIO_REVERB_ROCK,
+            AUDIO_REVERB_HIPHOP,
+            VOICE_BEAUTY_SPACIAL,
+            VOICE_CHANGER_ETHEREAL,
+            VOICE_CHANGER_OLDMAN,
+            VOICE_CHANGER_BABYBOY,
+            VOICE_CHANGER_BABYGIRL,
+            VOICE_CHANGER_ZHUBAJIE,
+            VOICE_CHANGER_HULK,
+    };
 
-    public static void changeVoice(RtcEngine engine, int type) {
-        if ((type < VOICE_THICK || type > VOICE_OPEN_AIR) &&
-                type != EFFECT_NONE) {
+    public static void beautifyVoice(RtcEngine engine, int index)
+    {
+        if (index < 0 || index >= BEAUTIFYVOICES.length)
+        {
             return;
         }
-
-        engine.setParameters(String.format(Locale.getDefault(),
-                "{\"che.audio.morph.voice_changer\": %d}", type));
+        engine.setLocalVoiceChanger(BEAUTIFYVOICES[index]);
     }
 
-    public static void changePreset(RtcEngine engine, int type) {
-        if ((type < EFFECT_NONE || type > PRESET_PHONOGRAPH) || type == 6) {
+    public static void voiceEffect(RtcEngine engine, int index)
+    {
+        if (index < 0 || index >= VOICEEFFECTS.length)
+        {
             return;
         }
-
-        engine.setParameters(String.format(Locale.getDefault(),
-                "{\"che.audio.morph.reverb_preset\": %d}", type));
+        else if(index > 16)
+        {
+            engine.setLocalVoiceChanger(VOICEEFFECTS[index]);
+        }
+        else
+        {
+            engine.setLocalVoiceReverbPreset(VOICEEFFECTS[index]);
+        }
     }
 }

@@ -14,26 +14,31 @@ import io.agora.highqualityaudio.R;
 import io.agora.highqualityaudio.adapters.MessageRecyclerAdapter;
 import io.agora.highqualityaudio.data.UserAccountManager;
 
-public class MessageRecyclerView extends RecyclerView {
+public class MessageRecyclerView extends RecyclerView
+{
     private MessageRecyclerAdapter mAdapter;
     private int mMessageMargin;
 
-    public MessageRecyclerView(@NonNull Context context) {
+    public MessageRecyclerView(@NonNull Context context)
+    {
         super(context);
         init(context);
     }
 
-    public MessageRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public MessageRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs)
+    {
         super(context, attrs);
         init(context);
     }
 
-    public MessageRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public MessageRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle)
+    {
         super(context, attrs, defStyle);
         init(context);
     }
 
-    private void init(Context context) {
+    private void init(Context context)
+    {
         mAdapter = new MessageRecyclerAdapter(context);
         setAdapter(mAdapter);
         LinearLayoutManager manager = new LinearLayoutManager(context);
@@ -42,10 +47,12 @@ public class MessageRecyclerView extends RecyclerView {
 
         mMessageMargin = context.getResources().
                 getDimensionPixelSize(R.dimen.room_message_padding) / 2;
-        addItemDecoration(new ItemDecoration() {
+        addItemDecoration(new ItemDecoration()
+        {
             @Override
             public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
-                                       @NonNull RecyclerView parent, @NonNull State state) {
+                                       @NonNull RecyclerView parent, @NonNull State state)
+            {
                 int pos = parent.getChildAdapterPosition(view);
                 outRect.top = mMessageMargin;
                 outRect.bottom = mMessageMargin;
@@ -55,11 +62,13 @@ public class MessageRecyclerView extends RecyclerView {
         });
     }
 
-    public void setUser(UserAccountManager.UserAccount account) {
+    public void setUser(UserAccountManager.UserAccount account)
+    {
         mAdapter.setUser(account);
     }
 
-    public void addMessage(String message) {
+    public void addMessage(String message)
+    {
         mAdapter.addMessage(message);
     }
 }

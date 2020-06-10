@@ -17,9 +17,9 @@ import io.agora.highqualityaudio.utils.WindowUtil;
 import io.agora.rtc.RtcEngine;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    private static int REQ_CODE = 1 << 4;
+    private static final int REQ_CODE = 1 << 4;
 
-    private String[] PERMISSIONS = {
+    private final String[] PERMISSIONS = {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
@@ -58,7 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQ_CODE) {
             boolean granted = true;
             for (int result : grantResults) {

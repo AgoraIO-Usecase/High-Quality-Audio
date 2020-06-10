@@ -23,35 +23,52 @@
     <string name="other_joined">User %d has taken a seat</string>
     <string name="other_left_seat">User %d has left a seat</string>
 
-    <string-array name="voice_change_items">
+    <string-array name="beatify_voice_items">
         <item>None</item>
-        <item>Thick</item>
-        <item>Low</item>
-        <item>Round</item>
-        <item>Falsetto</item>
-        <item>Full</item>
-        <item>Clear</item>
-        <item>Resounding</item>
-        <item>Loud</item>
-        <item>OpenAir</item>
+        <item>MAGNETIC(M)</item>
+        <item>FRESH(F)</item>
+        <item>VITALITY(F)</item>
+        <item>VIGOROUS</item>
+        <item>DEEP</item>
+        <item>MELLOW</item>
+        <item>FALSETTO</item>
+        <item>FULL</item>
+        <item>CLEAR</item>
+        <item>RESOUNDING</item>
+        <item>RINGING</item>
     </string-array>
 
-    <string-array name="voice_preset_items">
+    <string-array name="voice_effect_items">
         <item>None</item>
         <item>KTV</item>
-        <item>Live</item>
-        <item>Uncle</item>
-        <item>Girl</item>
-        <item>Studio</item>
-        <item>Pop</item>
+        <item>KTV(ENH)</item>
+        <item>CONCERT</item>
+        <item>CONCERT(ENH)</item>
+        <item>STUDIO</item>
+        <item>STUDIO(ENH)</item>
+        <item>PHONOGRAPH</item>
+        <item>STEREO</item>
+        <item>UNCLE</item>
+        <item>SISTER</item>
         <item>R&amp;B</item>
-        <item>Phonograph</item>
+        <item>R&amp;B(ENH)</item>
+        <item>POPULAR</item>
+        <item>POPULAR(ENH)</item>
+        <item>ROCK</item>
+        <item>HIPHOP</item>
+        <item>SPACIAL</item>
+        <item>ETHEREAL</item>
+        <item>OLDMAN</item>
+        <item>BABYBOY</item>
+        <item>BABYGILR</item>
+        <item>ZHUBAJIE</item>
+        <item>HULK</item>
     </string-array>
 
     <!-- Setting dialog -->
     <string name="setting_dialog_title">Room Settings</string>
-    <string name="setting_dialog_change_voice">Change Voice</string>
-    <string name="setting_dialog_beautify_voice">Beautify Voice</string>
+    <string name="setting_dialog_change_voice">Beautify Voice</string>
+    <string name="setting_dialog_beautify_voice">Voice Effect</string>
     <string name="setting_dialog_leave_room">Leave Room</string>
     <string name="setting_dialog_confirm">Confirm</string>
     <string name="setting_dialog_cancel">Cancel</string>

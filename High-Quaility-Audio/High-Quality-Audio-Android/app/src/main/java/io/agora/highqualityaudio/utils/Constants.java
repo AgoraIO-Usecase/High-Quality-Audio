@@ -20,10 +20,10 @@ public class Constants {
     public static final int REVERB_WET_DELAY = 3;
     public static final int REVERB_STRENGTH = 4;
 
-    public static String BUNDLE_KEY_UID = "key_uid";
-    public static String BUNDLE_KEY_CHANNEL_NAME = "key_channel_name";
-    public static String BUNDLE_KEY_BG_RES = "key_background_res";
-    public static String BUNDLE_KEY_PORTRAIT_RES = "key_portrait_res";
+    public static final String BUNDLE_KEY_UID = "key_uid";
+    public static final String BUNDLE_KEY_CHANNEL_NAME = "key_channel_name";
+    public static final String BUNDLE_KEY_BG_RES = "key_background_res";
+    public static final String BUNDLE_KEY_PORTRAIT_RES = "key_portrait_res";
 
     public static final int AVATAR_COUNT = 8;
 

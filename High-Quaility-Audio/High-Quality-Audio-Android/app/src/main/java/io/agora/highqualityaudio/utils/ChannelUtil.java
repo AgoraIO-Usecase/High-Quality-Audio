@@ -11,7 +11,7 @@ import io.agora.highqualityaudio.adapters.ChannelListAdapter;
 public class ChannelUtil {
     private static final int MAX_CHANNEL = 5;
 
-    private static int[] LIST_BACKGROUND = {
+    private static final int[] LIST_BACKGROUND = {
             R.drawable.ch_list_bg_0,
             R.drawable.ch_list_bg_1,
             R.drawable.ch_list_bg_2,
@@ -19,7 +19,7 @@ public class ChannelUtil {
             R.drawable.ch_list_bg_4
     };
 
-    private static int[] ROOM_BACKGROUND = {
+    private static final int[] ROOM_BACKGROUND = {
             R.drawable.bg_room_0,
             R.drawable.bg_room_1,
             R.drawable.bg_room_2,

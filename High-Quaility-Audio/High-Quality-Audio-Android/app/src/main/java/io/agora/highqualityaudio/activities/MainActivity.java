@@ -19,7 +19,6 @@ public class MainActivity extends BaseActivity implements
     private static final int SWIPE_TIMEOUT = 500;
 
     private SwipeRefreshLayout mSwipeList;
-    private Handler mSwipeHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,6 @@ public class MainActivity extends BaseActivity implements
 
         mSwipeList = findViewById(R.id.main_channel_layout);
         mSwipeList.setOnRefreshListener(this);
-        mSwipeHandler = new Handler(getMainLooper());
     }
 
     @Override
@@ -56,11 +54,11 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onRefresh() {
-        mSwipeHandler.postDelayed(new Runnable() {
+        mSwipeList.postDelayed(new Runnable()
+        {
             @Override
-            public void run() {
-                // There is no server to get the room list, so we
-                // finish the refreshing after timeout.
+            public void run()
+            {
                 mSwipeList.setRefreshing(false);
             }
         }, SWIPE_TIMEOUT);

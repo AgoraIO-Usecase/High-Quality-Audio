@@ -8,8 +8,7 @@ public interface EventHandler {
     void onUserJoined(int uid, int elapsed);
     void onUserOffline(int uid, int reason);
     void onAudioVolumeIndication(IRtcEngineEventHandler.AudioVolumeInfo[] speakers, int totalVolume);
-    void onUserMuteAudio(int uid, boolean muted);
+    void onRemoteAudioStateChanged(int uid, int state, int reason, int elapsed);
     void onRemoteAudioStats(IRtcEngineEventHandler.RemoteAudioStats stats);
-    void onFirstRemoteAudioDecoded(int uid, int elapsed);
     void onClientRoleChanged(int oldRole, int newRole);
 }

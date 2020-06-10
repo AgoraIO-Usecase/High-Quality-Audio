@@ -13,28 +13,33 @@ import androidx.recyclerview.widget.RecyclerView;
 import io.agora.highqualityaudio.R;
 import io.agora.highqualityaudio.adapters.ChannelListAdapter;
 
-public class ChannelListRecyclerView extends RecyclerView {
+public class ChannelListRecyclerView extends RecyclerView
+{
     private static final int SPAN_COUNT = 2;
 
     private ChannelListAdapter mAdapter;
     private int mItemPadding;
 
-    public ChannelListRecyclerView(@NonNull Context context) {
+    public ChannelListRecyclerView(@NonNull Context context)
+    {
         super(context);
         init(context);
     }
 
-    public ChannelListRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public ChannelListRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs)
+    {
         super(context, attrs);
         init(context);
     }
 
-    public ChannelListRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public ChannelListRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle)
+    {
         super(context, attrs, defStyle);
         init(context);
     }
 
-    private void init(Context context) {
+    private void init(Context context)
+    {
         mItemPadding = context.getResources().getDimensionPixelSize(
                 R.dimen.channel_list_margin_horizontal);
         mAdapter = new ChannelListAdapter(context);
@@ -44,15 +49,20 @@ public class ChannelListRecyclerView extends RecyclerView {
         GridLayoutManager manager = new GridLayoutManager(context, SPAN_COUNT);
         setLayoutManager(manager);
 
-        addItemDecoration(new ItemDecoration() {
+        addItemDecoration(new ItemDecoration()
+        {
             @Override
             public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
-                                       @NonNull RecyclerView parent, @NonNull State state) {
+                                       @NonNull RecyclerView parent, @NonNull State state)
+            {
                 int pos = parent.getChildAdapterPosition(view);
                 int padding = mItemPadding;
-                if (pos % 2 == 0) {
+                if (pos % 2 == 0)
+                {
                     outRect.right = padding;
-                } else {
+                }
+                else
+                {
                     outRect.left = padding;
                 }
 
@@ -62,7 +72,8 @@ public class ChannelListRecyclerView extends RecyclerView {
         });
     }
 
-    public void setItemClickListener(ChannelListAdapter.ChannelItemClickListener listener) {
+    public void setItemClickListener(ChannelListAdapter.ChannelItemClickListener listener)
+    {
         mAdapter.setItemClickListener(listener);
     }
 }
