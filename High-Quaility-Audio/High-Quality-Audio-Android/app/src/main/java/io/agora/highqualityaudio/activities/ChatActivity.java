@@ -342,7 +342,8 @@ public class ChatActivity extends BaseActivity implements EventHandler
 
     private void setEarsBackEnabled(boolean enabled)
     {
-        rtcEngine().setParameters(String.format("{\"che.audio.morph.earsback\": %b}", enabled));
+        rtcEngine().enableInEarMonitoring(enabled);
+//        rtcEngine().setParameters(String.format("{\"che.audio.morph.earsback\": %b}", enabled));
     }
 
     @Override
