@@ -1,59 +1,68 @@
-package io.agora.highqualityaudio.ui;
+package io.agora.highqualityaudio.dialog;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
-import io.agora.highqualityaudio.utils.WindowUtil;
+import io.agora.highqualityaudio.R;
+import io.agora.highqualityaudio.adapters.VoiceChangeAdapter;
+import io.agora.highqualityaudio.adapters.VoiceItemClickListener;
+import io.agora.highqualityaudio.ui.VoiceChangeRecyclerView;
+import io.agora.highqualityaudio.utils.SoundEffectUtil;
 
-public class ScreenHeightDialog extends AlertDialog {
+public class AINoiseDialog extends AlertDialog implements View.OnClickListener {
     public static final int DIALOG_FULL_WIDTH = 0;
     public static final int DIALOG_WIDE = -1;
-
     // The maximum dialog width in dp
     private static final int WIDE_SCREEN_DP = 240;
 
-    public interface OnDialogListener {
-        void onDialogShow(final AlertDialog dialog);
-    }
+    private int firstCategoryId = -1;
 
-    public ScreenHeightDialog(@NonNull Context context) {
+    public AINoiseDialog(@NonNull Context context, int firstCategoryId) {
         super(context);
+        this.firstCategoryId = firstCategoryId;
     }
 
-    /**
-     * @param res layout resource of the dialog
-     * @param width Dialog width on screen in pixel, no wider than
-     *        the full screen width.
-     *        Use DIALOG_FULL_WIDTH or DIALOG_WIDE for simplicity.
-     * @param gravity If the dialog is not full screen width,
-     *        gravity is the place to show this dialog, usually
-     *        either Gravity.START or Gravity.END
-     * @param listener do the initialization in the callback
-     */
-    public void show(int res, int width, int gravity, OnDialogListener listener) {
-        show();
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Window window = getWindow();
-        if (window == null) return;
-
-        WindowUtil.hideWindowStatusBar(window);
-
-        window.setLayout(getWidth(window, width),
+        if (window == null)
+        {
+            return;
+        }
+//        WindowUtil.hideWindowStatusBar(window);
+        window.setLayout(getWidth(window, DIALOG_FULL_WIDTH),
                 WindowManager.LayoutParams.MATCH_PARENT);
-        window.setContentView(res);
         window.setBackgroundDrawable(null);
+        window.setGravity(Gravity.END);
+        window.setContentView(R.layout.dialog_voice_effect_layout);
+        findViewById(R.id.change_voice_back).setOnClickListener(this);
+        findViewById(R.id.change_voice_btn_confirm).setOnClickListener(this);
+        findViewById(R.id.change_voice_btn_cancel).setOnClickListener(this);
+    }
 
-        int gra = gravity == Gravity.START || gravity == Gravity.END ?
-                gravity : Gravity.START;
-        window.setGravity(gra);
-
-        listener.onDialogShow(this);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.change_voice_back:
+            case R.id.change_voice_btn_cancel:
+                cancel();
+                break;
+            case R.id.change_voice_btn_confirm:
+                cancel();
+                break;
+            default:
+                break;
+        }
     }
 
     /**

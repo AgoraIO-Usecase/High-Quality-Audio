@@ -23,11 +23,28 @@
     <string name="other_joined">User %d has taken a seat</string>
     <string name="other_left_seat">User %d has left a seat</string>
 
-    <string-array name="beatify_voice_items">
-        <item>None</item>
+    <string name="beautify_voice">Beautify Voice</string>
+    <string name="voice_effect">Voice Effect</string>
+    <string name="voice_changer">Voice Changer</string>
+    <string name="ai_ns">ANC</string>
+
+    <string name="chat_beautify_voice">Chat</string>
+    <string name="sing_beautify_voice">Sing</string>
+    <string name="tone_change">Timbre</string>
+
+    <string name="space_voice_effect">Space</string>
+    <string name="change_voice_effect">Changer</string>
+    <string name="qufeng_voice_effect">QuFeng</string>
+    <string name="electric_voice_effect">Electric</string>
+    <string name="magic_voice_effect">Magic</string>
+
+    <string-array name="chat_beatify_voice_items">
         <item>MAGNETIC(M)</item>
         <item>FRESH(F)</item>
         <item>VITALITY(F)</item>
+    </string-array>
+
+    <string-array name="timbre_beatify_voice_items">
         <item>VIGOROUS</item>
         <item>DEEP</item>
         <item>MELLOW</item>
@@ -38,8 +55,7 @@
         <item>RINGING</item>
     </string-array>
 
-    <string-array name="voice_effect_items">
-        <item>None</item>
+    <string-array name="space_voice_effect_items">
         <item>KTV</item>
         <item>KTV(ENH)</item>
         <item>CONCERT</item>
@@ -48,16 +64,13 @@
         <item>STUDIO(ENH)</item>
         <item>PHONOGRAPH</item>
         <item>STEREO</item>
-        <item>UNCLE</item>
-        <item>SISTER</item>
-        <item>R&amp;B</item>
-        <item>R&amp;B(ENH)</item>
-        <item>POPULAR</item>
-        <item>POPULAR(ENH)</item>
-        <item>ROCK</item>
-        <item>HIPHOP</item>
         <item>SPACIAL</item>
         <item>ETHEREAL</item>
+    </string-array>
+
+    <string-array name="change_voice_effect_items">
+        <item>UNCLE</item>
+        <item>SISTER</item>
         <item>OLDMAN</item>
         <item>BABYBOY</item>
         <item>BABYGILR</item>
@@ -65,10 +78,15 @@
         <item>HULK</item>
     </string-array>
 
+    <string-array name="qufeng_voice_effect_items">
+        <item>R&amp;B</item>
+        <item>R&amp;B(ENH)</item>
+        <item>POPULAR</item>
+        <item>POPULAR(ENH)</item>
+    </string-array>
+
     <!-- Setting dialog -->
     <string name="setting_dialog_title">Room Settings</string>
-    <string name="setting_dialog_change_voice">Beautify Voice</string>
-    <string name="setting_dialog_beautify_voice">Voice Effect</string>
     <string name="setting_dialog_leave_room">Leave Room</string>
     <string name="setting_dialog_confirm">Confirm</string>
     <string name="setting_dialog_cancel">Cancel</string>

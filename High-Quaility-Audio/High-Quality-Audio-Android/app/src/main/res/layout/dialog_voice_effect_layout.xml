@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_1">
+
+    <RelativeLayout
+        android:id="@+id/change_voice_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_title_height"
+        android:background="@color/blue">
+
+        <ImageView
+            android:id="@+id/change_voice_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/room_title_back_margin"
+            android:layout_marginStart="@dimen/room_title_back_margin"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/room_title_back_margin"
+            android:src="@drawable/back_white"/>
+
+        <TextView
+            android:id="@+id/change_voice_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/voice_effect"
+            android:textColor="@color/universal_text_color"
+            android:textSize="@dimen/text_size_normal"/>
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_below="@id/change_voice_title_layout"
+        android:layout_marginTop="@dimen/change_voice_options_margin_top"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/action_Layout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/space"
+                android:text="@string/space_voice_effect"
+                android:textColor="@color/blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginLeft="@dimen/room_title_back_margin"
+                android:background="@drawable/bg_voice_item_selected"
+                android:paddingLeft="@dimen/change_voice_second_category_padding_left"
+                android:paddingTop="@dimen/change_voice_second_category_padding_top"
+                android:paddingRight="@dimen/change_voice_second_category_padding_right"
+                android:paddingBottom="@dimen/change_voice_second_category_padding_bottom"/>
+
+            <io.agora.highqualityaudio.ui.VoiceChangeRecyclerView
+                android:id="@+id/space_voice_recycler_options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:layout_below="@id/space"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/change_voice_options_margin_top"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/change"
+                android:text="@string/change_voice_effect"
+                android:textColor="@color/blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginLeft="@dimen/room_title_back_margin"
+                android:layout_below="@id/space_voice_recycler_options"
+                android:layout_marginTop="@dimen/change_voice_options_margin_top"
+                android:background="@drawable/bg_voice_item_selected"
+                android:paddingLeft="@dimen/change_voice_second_category_padding_left"
+                android:paddingTop="@dimen/change_voice_second_category_padding_top"
+                android:paddingRight="@dimen/change_voice_second_category_padding_right"
+                android:paddingBottom="@dimen/change_voice_second_category_padding_bottom"/>
+
+            <io.agora.highqualityaudio.ui.VoiceChangeRecyclerView
+                android:id="@+id/change_voice_recycler_options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:layout_below="@id/change"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/change_voice_options_margin_top"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/qufeng"
+                android:text="@string/qufeng_voice_effect"
+                android:textColor="@color/blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginLeft="@dimen/room_title_back_margin"
+                android:layout_below="@id/change_voice_recycler_options"
+                android:layout_marginTop="@dimen/change_voice_options_margin_top"
+                android:background="@drawable/bg_voice_item_selected"
+                android:paddingLeft="@dimen/change_voice_second_category_padding_left"
+                android:paddingTop="@dimen/change_voice_second_category_padding_top"
+                android:paddingRight="@dimen/change_voice_second_category_padding_right"
+                android:paddingBottom="@dimen/change_voice_second_category_padding_bottom"/>
+
+            <io.agora.highqualityaudio.ui.VoiceChangeRecyclerView
+                android:id="@+id/qufeng_change_recycler_options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/qufeng"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/change_voice_options_margin_top"/>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/action_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray_1"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/change_voice_button_margin_horizontal"
+        android:layout_marginRight="@dimen/change_voice_button_margin_horizontal"
+        android:layout_marginStart="@dimen/change_voice_button_margin_horizontal"
+        android:layout_marginEnd="@dimen/change_voice_button_margin_horizontal">
+
+        <Button
+            android:id="@+id/change_voice_btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/change_voice_item_margin_horizontal"
+            android:layout_marginEnd="@dimen/change_voice_item_margin_horizontal"
+            android:background="@drawable/bg_button_highlight"
+            android:text="@string/setting_dialog_confirm"
+            android:textColor="@color/universal_text_color"
+            android:textSize="@dimen/text_size_small"/>
+        <Button
+            android:id="@+id/change_voice_btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/change_voice_item_margin_horizontal"
+            android:layout_marginStart="@dimen/change_voice_item_margin_horizontal"
+            android:background="@drawable/bg_button_normal"
+            android:text="@string/setting_dialog_cancel"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_small"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

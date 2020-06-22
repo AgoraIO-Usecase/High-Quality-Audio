@@ -71,9 +71,13 @@
     <dimen name="change_voice_item_height">28dp</dimen>
     <dimen name="change_voice_item_margin_horizontal">6dp</dimen>
     <dimen name="change_voice_item_margin_vertical">10dp</dimen>
-    <dimen name="change_voice_options_margin_top">90dp</dimen>
+    <dimen name="change_voice_options_margin_top">20dp</dimen>
     <dimen name="change_voice_button_margin_bottom">52dp</dimen>
     <dimen name="change_voice_button_margin_horizontal">16dp</dimen>
+    <dimen name="change_voice_second_category_padding_left">10dp</dimen>
+    <dimen name="change_voice_second_category_padding_top">3dp</dimen>
+    <dimen name="change_voice_second_category_padding_right">10dp</dimen>
+    <dimen name="change_voice_second_category_padding_bottom">4dp</dimen>
 
     <!-- Dialogs -->
     <dimen name="dialog_title_height">48dp</dimen>
@@ -90,4 +94,6 @@
     <dimen name="button_corner_1">100dp</dimen>
     <dimen name="button_border">1dp</dimen>
     <dimen name="round_icon_back_size">180dp</dimen>
+
+    <dimen name="line_view_height">0.5dp</dimen>
 </resources>

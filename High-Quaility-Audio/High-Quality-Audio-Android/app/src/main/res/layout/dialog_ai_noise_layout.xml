@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray_1">
 
     <RelativeLayout
@@ -19,6 +20,7 @@
             android:layout_centerVertical="true"
             android:padding="@dimen/room_title_back_margin"
             android:src="@drawable/back_white"/>
+
         <TextView
             android:id="@+id/change_voice_title"
             android:layout_width="wrap_content"
@@ -30,19 +32,35 @@
 
     </RelativeLayout>
 
-    <io.agora.highqualityaudio.ui.VoiceChangeRecyclerView
-        android:id="@+id/change_voice_recycler_options"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:padding="@dimen/dialog_item_margin_top"
+        android:background="@color/gray_2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/change_voice_title_layout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/change_voice_options_margin_top"/>
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ai_ns"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal"/>
+
+        <Switch
+            android:id="@+id/ANC_Switch"
+            android:layout_width="@dimen/change_voice_button_margin_bottom"
+            android:layout_height="@dimen/change_voice_button_margin_horizontal"
+            android:layout_alignParentRight="true"
+            android:checked="true"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_btn_height"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/change_voice_button_margin_bottom"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/change_voice_button_margin_horizontal"
         android:layout_marginRight="@dimen/change_voice_button_margin_horizontal"

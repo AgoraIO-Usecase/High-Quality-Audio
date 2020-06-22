@@ -22,9 +22,14 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
 
     private List<ChangeVoiceItem> mChangeVoiceItems;
 
-    public VoiceChangeAdapter(Context context, @ArrayRes int resId)
+    private VoiceItemClickListener voiceItemClickListener;
+
+    private int curCategoryId;
+
+    public VoiceChangeAdapter(Context context, @ArrayRes int resId, int curCategoryId)
     {
         this.mInflater = LayoutInflater.from(context);
+        this.curCategoryId = curCategoryId;
         initVoiceItems(context, resId);
     }
 
@@ -57,6 +62,10 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
             public void onClick(View v)
             {
                 setSelectedPosition(position);
+                if(voiceItemClickListener != null)
+                {
+                    voiceItemClickListener.onVoiceItemClick(curCategoryId, position);
+                }
             }
         });
     }
@@ -67,11 +76,8 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
         return mChangeVoiceItems.size();
     }
 
-    private void setSelected(int position, boolean selected)
-    {
-        if (position < 0 || position >= mChangeVoiceItems.size()) return;
-        mChangeVoiceItems.get(position).setSelected(selected);
-        notifyDataSetChanged();
+    public void setVoiceItemClickListener(VoiceItemClickListener voiceItemClickListener) {
+        this.voiceItemClickListener = voiceItemClickListener;
     }
 
     public void setSelectedPosition(int position)
@@ -94,8 +100,16 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
                 break;
             }
         }
-
         return position;
+    }
+
+    public void clearSelected()
+    {
+        for (int i = 0; i < mChangeVoiceItems.size(); i++)
+        {
+            mChangeVoiceItems.get(i).setSelected(false);
+        }
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder

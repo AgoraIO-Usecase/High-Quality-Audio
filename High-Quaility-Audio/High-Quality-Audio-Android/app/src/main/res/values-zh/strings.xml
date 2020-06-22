@@ -23,11 +23,28 @@
     <string name="other_joined">用户 %d 加入麦位</string>
     <string name="other_left_seat">用户 %d 已离开麦位</string>
 
-    <string-array name="beatify_voice_items">
-        <item>无</item>
+    <string name="beautify_voice">美声</string>
+    <string name="voice_effect">音效</string>
+    <string name="voice_changer">变声</string>
+    <string name="ai_ns">AI降噪</string>
+
+    <string name="chat_beautify_voice">语聊美声</string>
+    <string name="sing_beautify_voice">歌唱美声</string>
+    <string name="tone_change">音色变换</string>
+
+    <string name="space_voice_effect">空间塑造</string>
+    <string name="change_voice_effect">变声音效</string>
+    <string name="qufeng_voice_effect">曲风音效</string>
+    <string name="electric_voice_effect">电音音效</string>
+    <string name="magic_voice_effect">魔力音阶</string>
+
+    <string-array name="chat_beatify_voice_items">
         <item>磁性(男)</item>
         <item>清新(女)</item>
         <item>活力(女)</item>
+    </string-array>
+
+    <string-array name="timbre_beatify_voice_items">
         <item>浑厚</item>
         <item>低沉</item>
         <item>圆润</item>
@@ -38,8 +55,7 @@
         <item>嘹亮</item>
     </string-array>
 
-    <string-array name="voice_effect_items">
-        <item>无</item>
+    <string-array name="space_voice_effect_items">
         <item>KTV</item>
         <item>KTV(增强）</item>
         <item>演唱会</item>
@@ -48,16 +64,13 @@
         <item>录音棚(增强)</item>
         <item>留声机</item>
         <item>虚拟立体声</item>
-        <item>大叔</item>
-        <item>小姐姐</item>
-        <item>R&amp;B</item>
-        <item>R&amp;B(增强)</item>
-        <item>流行</item>
-        <item>流行(增强)</item>
-        <item>摇滚</item>
-        <item>嘻哈</item>
         <item>空旷</item>
         <item>空灵</item>
+    </string-array>
+
+    <string-array name="change_voice_effect_items">
+        <item>大叔</item>
+        <item>小姐姐</item>
         <item>老男孩</item>
         <item>小男孩</item>
         <item>小女孩</item>
@@ -65,10 +78,15 @@
         <item>绿巨人</item>
     </string-array>
 
+    <string-array name="qufeng_voice_effect_items">
+        <item>R&amp;B</item>
+        <item>R&amp;B(增强)</item>
+        <item>流行</item>
+        <item>流行(增强)</item>
+    </string-array>
+
     <!-- Setting dialog -->
     <string name="setting_dialog_title">房间设置</string>
-    <string name="setting_dialog_change_voice">美声</string>
-    <string name="setting_dialog_beautify_voice">音效</string>
     <string name="setting_dialog_leave_room">离开房间</string>
     <string name="setting_dialog_confirm">确定</string>
     <string name="setting_dialog_cancel">取消</string>
