@@ -22,6 +22,7 @@ import io.agora.highqualityaudio.R;
 import io.agora.highqualityaudio.adapters.SeatListAdapter;
 import io.agora.highqualityaudio.adapters.VoiceChangeAdapter;
 import io.agora.highqualityaudio.data.UserAccountManager;
+import io.agora.highqualityaudio.dialog.AINoiseDialog;
 import io.agora.highqualityaudio.dialog.BeautifyVoiceDialog;
 import io.agora.highqualityaudio.dialog.VoiceEffectDialog;
 import io.agora.highqualityaudio.dialog.VoiceEffectListener;
@@ -302,6 +303,8 @@ public class ChatActivity extends BaseActivity implements EventHandler, VoiceEff
     }
 
     private void openANCDialog() {
+        AINoiseDialog aiNoiseDialog = new AINoiseDialog(this);
+        aiNoiseDialog.show();
     }
 
     public void onBackClicked(View view) {

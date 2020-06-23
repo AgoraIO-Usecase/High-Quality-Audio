@@ -85,6 +85,17 @@
         <item>POPULAR(ENH)</item>
     </string-array>
 
+    <string name="noise_reduce_arch">Arch</string>
+
+    <string-array name="noise_reduce_arch_items">
+        <item>Default</item>
+        <item>AI</item>
+        <item>Default+AI</item>
+        <item>AI+Default</item>
+    </string-array>
+
+    <string name="noise_reduce_level">Reduce Level</string>
+
     <!-- Setting dialog -->
     <string name="setting_dialog_title">Room Settings</string>
     <string name="setting_dialog_leave_room">Leave Room</string>

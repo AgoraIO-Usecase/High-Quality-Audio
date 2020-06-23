@@ -96,4 +96,8 @@
     <dimen name="round_icon_back_size">180dp</dimen>
 
     <dimen name="line_view_height">0.5dp</dimen>
+
+    <dimen name="seekbar_corner">3dp</dimen>
+    <dimen name="seekbar_cursor_width">16dp</dimen>
+    <dimen name="seekbar_cursor_height">16dp</dimen>
 </resources>

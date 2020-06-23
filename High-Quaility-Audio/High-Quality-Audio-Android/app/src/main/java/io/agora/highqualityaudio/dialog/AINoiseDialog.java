@@ -23,11 +23,8 @@ public class AINoiseDialog extends AlertDialog implements View.OnClickListener {
     // The maximum dialog width in dp
     private static final int WIDE_SCREEN_DP = 240;
 
-    private int firstCategoryId = -1;
-
-    public AINoiseDialog(@NonNull Context context, int firstCategoryId) {
+    public AINoiseDialog(@NonNull Context context) {
         super(context);
-        this.firstCategoryId = firstCategoryId;
     }
 
     @Override
@@ -43,7 +40,7 @@ public class AINoiseDialog extends AlertDialog implements View.OnClickListener {
                 WindowManager.LayoutParams.MATCH_PARENT);
         window.setBackgroundDrawable(null);
         window.setGravity(Gravity.END);
-        window.setContentView(R.layout.dialog_voice_effect_layout);
+        window.setContentView(R.layout.dialog_ai_noise_layout);
         findViewById(R.id.change_voice_back).setOnClickListener(this);
         findViewById(R.id.change_voice_btn_confirm).setOnClickListener(this);
         findViewById(R.id.change_voice_btn_cancel).setOnClickListener(this);

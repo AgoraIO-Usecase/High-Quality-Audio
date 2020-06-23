@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray_1">
 
     <RelativeLayout
@@ -15,11 +15,11 @@
             android:id="@+id/change_voice_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/room_title_back_margin"
-            android:layout_marginStart="@dimen/room_title_back_margin"
             android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/room_title_back_margin"
+            android:layout_marginLeft="@dimen/room_title_back_margin"
             android:padding="@dimen/room_title_back_margin"
-            android:src="@drawable/back_white"/>
+            android:src="@drawable/back_white" />
 
         <TextView
             android:id="@+id/change_voice_title"
@@ -28,32 +28,98 @@
             android:layout_centerInParent="true"
             android:text="@string/beautify_voice"
             android:textColor="@color/universal_text_color"
-            android:textSize="@dimen/text_size_normal"/>
+            android:textSize="@dimen/text_size_normal" />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:padding="@dimen/dialog_item_margin_top"
-        android:background="@color/gray_2"
+        android:id="@+id/switch_Layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/change_voice_title_layout"
-        android:gravity="center_vertical">
+        android:background="@color/gray_2"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dialog_item_margin_top">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ai_ns"
             android:layout_centerVertical="true"
+            android:text="@string/ai_ns"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/text_size_normal"/>
+            android:textSize="@dimen/text_size_normal" />
 
         <Switch
             android:id="@+id/ANC_Switch"
             android:layout_width="@dimen/change_voice_button_margin_bottom"
             android:layout_height="@dimen/change_voice_button_margin_horizontal"
             android:layout_alignParentRight="true"
-            android:checked="true"/>
+            android:checked="true" />
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/arch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/switch_Layout"
+        android:layout_marginLeft="@dimen/room_title_back_margin"
+        android:layout_marginTop="@dimen/change_voice_options_margin_top"
+        android:background="@drawable/bg_voice_item_selected"
+        android:paddingLeft="@dimen/change_voice_second_category_padding_left"
+        android:paddingTop="@dimen/change_voice_second_category_padding_top"
+        android:paddingRight="@dimen/change_voice_second_category_padding_right"
+        android:paddingBottom="@dimen/change_voice_second_category_padding_bottom"
+        android:text="@string/chat_beautify_voice"
+        android:textColor="@color/blue"
+        android:textSize="14sp" />
+
+    <io.agora.highqualityaudio.ui.VoiceChangeRecyclerView
+        android:id="@+id/noise_recycler_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/arch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/change_voice_options_margin_top"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+
+    <RelativeLayout
+        android:id="@+id/level_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/noise_recycler_options"
+        android:layout_marginTop="@dimen/change_voice_options_margin_top"
+        android:background="@color/gray_2"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dialog_item_margin_top">
+
+        <TextView
+            android:id="@+id/reduceLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/noise_reduce_level"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/determinateBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="6dp"
+            android:minHeight="4dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/change_voice_options_margin_top"
+            android:layout_toRightOf="@id/reduceLevel"
+            android:max="10"
+            android:min="1"
+            android:progress="9"
+            android:secondaryProgress="10"
+            android:progressDrawable="@drawable/drawable_progressbar_reducelevel"
+            android:thumb="@drawable/drawable_progress_cursor"
+            android:thumbOffset="0dp" />
 
     </RelativeLayout>
 
@@ -61,34 +127,35 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_btn_height"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/change_voice_button_margin_horizontal"
-        android:layout_marginRight="@dimen/change_voice_button_margin_horizontal"
         android:layout_marginStart="@dimen/change_voice_button_margin_horizontal"
-        android:layout_marginEnd="@dimen/change_voice_button_margin_horizontal">
+        android:layout_marginLeft="@dimen/change_voice_button_margin_horizontal"
+        android:layout_marginEnd="@dimen/change_voice_button_margin_horizontal"
+        android:layout_marginRight="@dimen/change_voice_button_margin_horizontal"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/change_voice_btn_confirm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginRight="@dimen/change_voice_item_margin_horizontal"
             android:layout_marginEnd="@dimen/change_voice_item_margin_horizontal"
+            android:layout_marginRight="@dimen/change_voice_item_margin_horizontal"
+            android:layout_weight="1"
             android:background="@drawable/bg_button_highlight"
             android:text="@string/setting_dialog_confirm"
             android:textColor="@color/universal_text_color"
-            android:textSize="@dimen/text_size_small"/>
+            android:textSize="@dimen/text_size_small" />
+
         <Button
             android:id="@+id/change_voice_btn_cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/change_voice_item_margin_horizontal"
             android:layout_marginStart="@dimen/change_voice_item_margin_horizontal"
+            android:layout_marginLeft="@dimen/change_voice_item_margin_horizontal"
+            android:layout_weight="1"
             android:background="@drawable/bg_button_normal"
             android:text="@string/setting_dialog_cancel"
             android:textColor="@color/blue"
-            android:textSize="@dimen/text_size_small"/>
+            android:textSize="@dimen/text_size_small" />
 
     </LinearLayout>
 

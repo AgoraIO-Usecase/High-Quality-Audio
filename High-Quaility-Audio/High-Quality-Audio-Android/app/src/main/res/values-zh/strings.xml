@@ -85,6 +85,17 @@
         <item>流行(增强)</item>
     </string-array>
 
+    <string name="noise_reduce_arch">架构</string>
+
+    <string-array name="noise_reduce_arch_items">
+        <item>传统</item>
+        <item>AI</item>
+        <item>传统+AI</item>
+        <item>AI+传统</item>
+    </string-array>
+
+    <string name="noise_reduce_level">降噪幅度</string>
+
     <!-- Setting dialog -->
     <string name="setting_dialog_title">房间设置</string>
     <string name="setting_dialog_leave_room">离开房间</string>
