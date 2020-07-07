@@ -26,6 +26,8 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
 
     private int curCategoryId;
 
+    private boolean clickEnable = true;
+
     public VoiceChangeAdapter(Context context, @ArrayRes int resId, int curCategoryId)
     {
         this.mInflater = LayoutInflater.from(context);
@@ -61,6 +63,9 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
             @Override
             public void onClick(View v)
             {
+                /**判断是否限制点击*/
+                if(!clickEnable)
+                {return;}
                 setSelectedPosition(position);
                 if(voiceItemClickListener != null)
                 {
@@ -110,6 +115,10 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
             mChangeVoiceItems.get(i).setSelected(false);
         }
         notifyDataSetChanged();
+    }
+
+    public void setClickEnable(boolean clickEnable) {
+        this.clickEnable = clickEnable;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder

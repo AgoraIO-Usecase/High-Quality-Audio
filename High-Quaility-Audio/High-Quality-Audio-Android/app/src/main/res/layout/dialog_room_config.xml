@@ -54,7 +54,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:visibility="gone"
             android:id="@+id/config_room_voice_changer_point"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dialog_item_height"

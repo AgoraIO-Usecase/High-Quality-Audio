@@ -4,6 +4,8 @@ import android.app.Application;
 
 import io.agora.highqualityaudio.data.UserAccountManager;
 import io.agora.highqualityaudio.rtc.AgoraEventHandler;
+import io.agora.highqualityaudio.utils.PreferenceManager;
+import io.agora.highqualityaudio.utils.SoundSettingUtil;
 import io.agora.rtc.RtcEngine;
 
 public class AgoraApplication extends Application
@@ -33,6 +35,8 @@ public class AgoraApplication extends Application
         {
             e.printStackTrace();
         }
+        PreferenceManager.init(this);
+        SoundSettingUtil.initEngineSoundSetting(mRtcEngine);
     }
 
     @Override

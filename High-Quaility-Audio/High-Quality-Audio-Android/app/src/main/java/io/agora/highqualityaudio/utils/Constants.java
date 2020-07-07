@@ -25,6 +25,16 @@ public class Constants {
     public static final String BUNDLE_KEY_BG_RES = "key_background_res";
     public static final String BUNDLE_KEY_PORTRAIT_RES = "key_portrait_res";
 
+//    public static final String FIRST_CATEGORY = "key_first_category";
+    public static final String SECOND_CATEGORY = "key_second_category";
+//    public static final String VOICE_REVERB_PRESET = "key_voice_reverb_preset";
+//    public static final String VOICE_CHANGER = "key_voice_changer";
+    public static final String VOICE_INDEX = "key_voice_index";
+
+    public static final String ANC_SWITCH = "key_ANC_switch";
+    public static final String ANC_ARCH = "key_ANC_arch";
+    public static final String ANC_RANGE = "key_ANC_range";
+
     public static final int AVATAR_COUNT = 8;
 
     public static final int[] AVATAR_RES = {

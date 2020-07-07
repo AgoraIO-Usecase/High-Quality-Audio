@@ -15,8 +15,11 @@ import io.agora.highqualityaudio.R;
 import io.agora.highqualityaudio.adapters.VoiceChangeAdapter;
 import io.agora.highqualityaudio.adapters.VoiceItemClickListener;
 import io.agora.highqualityaudio.ui.VoiceChangeRecyclerView;
-import io.agora.highqualityaudio.utils.SoundEffectUtil;
-import io.agora.highqualityaudio.utils.WindowUtil;
+import io.agora.highqualityaudio.utils.PreferenceManager;
+import io.agora.highqualityaudio.utils.SoundSettingUtil;
+
+import static io.agora.highqualityaudio.utils.Constants.SECOND_CATEGORY;
+import static io.agora.highqualityaudio.utils.Constants.VOICE_INDEX;
 
 public class BeautifyVoiceDialog extends AlertDialog implements View.OnClickListener, VoiceItemClickListener {
     public static final int DIALOG_FULL_WIDTH = 0;
@@ -38,8 +41,7 @@ public class BeautifyVoiceDialog extends AlertDialog implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Window window = getWindow();
-        if (window == null)
-        {
+        if (window == null) {
             return;
         }
 //        WindowUtil.hideWindowStatusBar(window);
@@ -52,26 +54,29 @@ public class BeautifyVoiceDialog extends AlertDialog implements View.OnClickList
         findViewById(R.id.change_voice_btn_confirm).setOnClickListener(this);
         findViewById(R.id.change_voice_btn_cancel).setOnClickListener(this);
         chatRecyclerView = findViewById(R.id.chat_voice_recycler_options);
-        chatAdapter = new VoiceChangeAdapter(getContext(), R.array.chat_beatify_voice_items, SoundEffectUtil.SECONDCATEGORY[0]);
+        chatAdapter = new VoiceChangeAdapter(getContext(), R.array.chat_beatify_voice_items, SoundSettingUtil.SECONDCATEGORYID[0]);
         chatAdapter.setVoiceItemClickListener(this);
         chatRecyclerView.setAdapter(chatAdapter);
+        singRecyclerView = findViewById(R.id.sing_voice_recycler_options);
+        singAdapter = new VoiceChangeAdapter(getContext(), R.array.sing_beatify_voice_items, SoundSettingUtil.SECONDCATEGORYID[1]);
+        singAdapter.setVoiceItemClickListener(this);
+        singRecyclerView.setAdapter(singAdapter);
         timbreRecyclerView = findViewById(R.id.tone_change_recycler_options);
-        timbreAdapter = new VoiceChangeAdapter(getContext(), R.array.timbre_beatify_voice_items, SoundEffectUtil.SECONDCATEGORY[2]);
+        timbreAdapter = new VoiceChangeAdapter(getContext(), R.array.timbre_beatify_voice_items, SoundSettingUtil.SECONDCATEGORYID[2]);
         timbreAdapter.setVoiceItemClickListener(this);
         timbreRecyclerView.setAdapter(timbreAdapter);
+        recoverySelected();
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.change_voice_back:
             case R.id.change_voice_btn_cancel:
                 cancel();
                 break;
             case R.id.change_voice_btn_confirm:
-                if(voiceEffectListener != null)
-                {
+                if (voiceEffectListener != null) {
                     voiceEffectListener.onVoiceSelect(firstCategoryId, secondCategoryId, index);
                 }
                 cancel();
@@ -85,23 +90,33 @@ public class BeautifyVoiceDialog extends AlertDialog implements View.OnClickList
     public void onVoiceItemClick(int categoryId, int index) {
         chatAdapter.clearSelected();
         timbreAdapter.clearSelected();
-        /**For questions about category values, please see {@link SoundEffectUtil#SECONDCATEGORY}*/
-        switch (categoryId)
-        {
-            case 0:
-                chatAdapter.setSelectedPosition(index);
-                break;
-            case 1:
-                singAdapter.setSelectedPosition(index);
-                break;
-            case 2:
-                timbreAdapter.setSelectedPosition(index);
-                break;
-            default:
-                break;
+        /**For questions about category values, please see {@link SoundSettingUtil#SECONDCATEGORYID}*/
+        if (categoryId == SoundSettingUtil.SECONDCATEGORYID[0]) {
+            chatAdapter.setSelectedPosition(index);
+        } else if (categoryId == SoundSettingUtil.SECONDCATEGORYID[1]) {
+            singAdapter.setSelectedPosition(index);
+        } else if (categoryId == SoundSettingUtil.SECONDCATEGORYID[2]) {
+            timbreAdapter.setSelectedPosition(index);
         }
         this.secondCategoryId = categoryId;
         this.index = index;
+    }
+
+    private void recoverySelected() {
+        int second = PreferenceManager.get(SECOND_CATEGORY, -1);
+        VoiceChangeAdapter adapter = null;
+        if (second == SoundSettingUtil.SECONDCATEGORYID[0]) {
+            adapter = chatAdapter;
+        } else if (second == SoundSettingUtil.SECONDCATEGORYID[1]) {
+            adapter = singAdapter;
+        } else if (second == SoundSettingUtil.SECONDCATEGORYID[2]) {
+            adapter = timbreAdapter;
+        }
+        else
+        {return;}
+        int index = PreferenceManager.get(VOICE_INDEX, -1);
+        adapter.setSelectedPosition(index);
+        adapter.notifyItemChanged(index);
     }
 
     public void setVoiceEffectListener(VoiceEffectListener voiceEffectListener) {
@@ -113,10 +128,11 @@ public class BeautifyVoiceDialog extends AlertDialog implements View.OnClickList
      * or the target width is larger than the actual screen width;
      * Otherwise, the dialog is set to target width, with the maximum
      * width WIDE_SCREEN_DP
+     *
      * @param window dialog window
-     * @param width target width
+     * @param width  target width
      * @return MATCH_PARENT if full screen wide, otherwise the actual width
-     *         of the dialog in pixels
+     * of the dialog in pixels
      */
     private int getWidth(Window window, int width) {
         if (width == DIALOG_FULL_WIDTH) return WindowManager.LayoutParams.MATCH_PARENT;

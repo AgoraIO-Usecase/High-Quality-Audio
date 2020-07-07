@@ -15,8 +15,11 @@ import io.agora.highqualityaudio.R;
 import io.agora.highqualityaudio.adapters.VoiceChangeAdapter;
 import io.agora.highqualityaudio.adapters.VoiceItemClickListener;
 import io.agora.highqualityaudio.ui.VoiceChangeRecyclerView;
-import io.agora.highqualityaudio.utils.SoundEffectUtil;
-import io.agora.highqualityaudio.utils.WindowUtil;
+import io.agora.highqualityaudio.utils.PreferenceManager;
+import io.agora.highqualityaudio.utils.SoundSettingUtil;
+
+import static io.agora.highqualityaudio.utils.Constants.SECOND_CATEGORY;
+import static io.agora.highqualityaudio.utils.Constants.VOICE_INDEX;
 
 public class VoiceEffectDialog extends AlertDialog implements View.OnClickListener, VoiceItemClickListener {
     public static final int DIALOG_FULL_WIDTH = 0;
@@ -52,17 +55,18 @@ public class VoiceEffectDialog extends AlertDialog implements View.OnClickListen
         findViewById(R.id.change_voice_btn_confirm).setOnClickListener(this);
         findViewById(R.id.change_voice_btn_cancel).setOnClickListener(this);
         spaceRecyclerView = findViewById(R.id.space_voice_recycler_options);
-        spaceAdapter = new VoiceChangeAdapter(getContext(), R.array.space_voice_effect_items, SoundEffectUtil.SECONDCATEGORY[3]);
+        spaceAdapter = new VoiceChangeAdapter(getContext(), R.array.space_voice_effect_items, SoundSettingUtil.SECONDCATEGORYID[3]);
         spaceAdapter.setVoiceItemClickListener(this);
         spaceRecyclerView.setAdapter(spaceAdapter);
         changeRecyclerView = findViewById(R.id.change_voice_recycler_options);
-        changeAdapter = new VoiceChangeAdapter(getContext(), R.array.change_voice_effect_items, SoundEffectUtil.SECONDCATEGORY[4]);
+        changeAdapter = new VoiceChangeAdapter(getContext(), R.array.change_voice_effect_items, SoundSettingUtil.SECONDCATEGORYID[4]);
         changeAdapter.setVoiceItemClickListener(this);
         changeRecyclerView.setAdapter(changeAdapter);
         qufengRecyclerView = findViewById(R.id.qufeng_change_recycler_options);
-        qufengAdapter = new VoiceChangeAdapter(getContext(), R.array.qufeng_voice_effect_items, SoundEffectUtil.SECONDCATEGORY[5]);
+        qufengAdapter = new VoiceChangeAdapter(getContext(), R.array.qufeng_voice_effect_items, SoundSettingUtil.SECONDCATEGORYID[5]);
         qufengAdapter.setVoiceItemClickListener(this);
         qufengRecyclerView.setAdapter(qufengAdapter);
+        recoverySelected();
     }
 
     @Override
@@ -90,7 +94,7 @@ public class VoiceEffectDialog extends AlertDialog implements View.OnClickListen
         spaceAdapter.clearSelected();
         changeAdapter.clearSelected();
         qufengAdapter.clearSelected();
-        /**For questions about category values, please see {@link SoundEffectUtil#SECONDCATEGORY}*/
+        /**For questions about category values, please see {@link SoundSettingUtil#SECONDCATEGORYID}*/
         switch (categoryId)
         {
             case 3:
@@ -107,6 +111,23 @@ public class VoiceEffectDialog extends AlertDialog implements View.OnClickListen
         }
         this.secondCategoryId = categoryId;
         this.index = index;
+    }
+
+    private void recoverySelected() {
+        int second = PreferenceManager.get(SECOND_CATEGORY, -1);
+        VoiceChangeAdapter adapter = null;
+        if (second == SoundSettingUtil.SECONDCATEGORYID[3]) {
+            adapter = spaceAdapter;
+        } else if (second == SoundSettingUtil.SECONDCATEGORYID[4]) {
+            adapter = changeAdapter;
+        } else if (second == SoundSettingUtil.SECONDCATEGORYID[5]) {
+            adapter = qufengAdapter;
+        }
+        else
+        {return;}
+        int index = PreferenceManager.get(VOICE_INDEX, -1);
+        adapter.setSelectedPosition(index);
+        adapter.notifyItemChanged(index);
     }
 
     public void setVoiceEffectListener(VoiceEffectListener voiceEffectListener) {

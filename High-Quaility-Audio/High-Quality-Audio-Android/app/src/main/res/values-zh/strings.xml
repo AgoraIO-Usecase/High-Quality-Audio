@@ -44,6 +44,9 @@
         <item>活力(女)</item>
     </string-array>
 
+    <string-array name="sing_beatify_voice_items">
+    </string-array>
+
     <string-array name="timbre_beatify_voice_items">
         <item>浑厚</item>
         <item>低沉</item>

@@ -44,6 +44,9 @@
         <item>VITALITY(F)</item>
     </string-array>
 
+    <string-array name="sing_beatify_voice_items">
+    </string-array>
+
     <string-array name="timbre_beatify_voice_items">
         <item>VIGOROUS</item>
         <item>DEEP</item>
