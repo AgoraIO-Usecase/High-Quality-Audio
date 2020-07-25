@@ -3,17 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_main">
-    <TextView
-        android:id="@+id/channel_list_title"
+
+    <RelativeLayout
+        android:id="@+id/title_Layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="gravity"
-        android:gravity="center"
-        android:paddingTop="@dimen/channel_list_title_padding"
-        android:paddingBottom="@dimen/channel_list_title_padding"
-        android:text="@string/channel_list_title"
-        android:textColor="@color/universal_text_color"
-        android:textSize="@dimen/text_size_normal"/>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/channel_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:paddingTop="@dimen/channel_list_title_padding"
+            android:paddingBottom="@dimen/channel_list_title_padding"
+            android:text="@string/channel_list_title"
+            android:textColor="@color/universal_text_color"
+            android:textSize="@dimen/text_size_normal"/>
+
+        <ImageView
+            android:layout_alignBottom="@id/channel_list_title"
+            android:layout_marginBottom="@dimen/room_title_layout_margin_top"
+            android:id="@+id/chat_room_settings"
+            android:layout_width="@dimen/room_setting_btn_size"
+            android:layout_height="@dimen/room_setting_btn_size"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/room_setting_btn_margin"
+            android:layout_marginRight="@dimen/room_setting_btn_margin"
+            android:background="@drawable/bg_round_icon"
+            android:padding="@dimen/room_setting_btn_padding"
+            android:src="@drawable/ic_settings" />
+
+    </RelativeLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/main_channel_layout"
@@ -22,7 +45,7 @@
         android:layout_marginBottom="@dimen/channel_list_margin_vertical"
         android:layout_marginLeft="@dimen/channel_list_margin_horizontal"
         android:layout_marginRight="@dimen/channel_list_margin_horizontal"
-        android:layout_below="@id/channel_list_title">
+        android:layout_below="@id/title_Layout">
 
         <io.agora.highqualityaudio.ui.ChannelListRecyclerView
             android:id="@+id/main_channel_list"

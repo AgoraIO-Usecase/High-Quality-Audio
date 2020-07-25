@@ -93,8 +93,8 @@
     <string-array name="noise_reduce_arch_items">
         <item>传统</item>
         <item>AI</item>
-        <item>传统+AI</item>
-        <item>AI+传统</item>
+<!--        <item>传统+AI</item>-->
+<!--        <item>AI+传统</item>-->
     </string-array>
 
     <string name="noise_reduce_level">降噪幅度</string>

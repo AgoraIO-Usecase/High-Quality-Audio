@@ -34,7 +34,7 @@ public class SeatListAdapter extends RecyclerView.Adapter<SeatListAdapter.ViewHo
     {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
-        mMyAccount = UserAccountManager.INSTANCE.account();
+        mMyAccount = UserAccountManager.account();
         initVacancies();
     }
 

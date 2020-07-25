@@ -87,6 +87,7 @@
     <RelativeLayout
         android:id="@+id/level_Layout"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_below="@id/arch_recycler_options"
         android:layout_marginTop="@dimen/change_voice_options_margin_top"
@@ -115,7 +116,7 @@
             android:layout_toRightOf="@id/reduceLevel"
             android:max="10"
             android:min="1"
-            android:progress="1"
+            android:progress="7"
             android:secondaryProgress="10"
             android:progressDrawable="@drawable/drawable_progressbar_reducelevel"
             android:thumb="@drawable/drawable_progress_cursor"

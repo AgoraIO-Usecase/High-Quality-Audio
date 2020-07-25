@@ -109,7 +109,6 @@ public class SoundSettingUtil
 
     public static final int[][] SECONDCATEGORYVALUES = new int[][]{CHANGEVOICES, SINGVOICES, TIMBREVOICES, SPACEVOICES, CHANGEVOICES, QUFENGVOICES};
 
-
     public static void setVoice(RtcEngine engine, int firstCategoryId, int secondCategoryId, int index) {
         /**保存最终选择的二级分类*/
         PreferenceManager.put(SECOND_CATEGORY, secondCategoryId);
@@ -150,12 +149,12 @@ public class SoundSettingUtil
         /**关闭AI降噪相当于只开传统降噪*/
         if(!ANCSwitch)
         {
-            engine.setParameters("{\"che.audio.enable.ains\":0}");
+            engine.setParameters("{\"che.audio.ns.mode\":0}");
         }
         else
         {
-            engine.setParameters("{\"che.audio.enable.ains\":" + arch + "}");
-            engine.setParameters("{\"che.audio.ains.hl\":" + ANCRange + "}");
+            engine.setParameters("{\"che.audio.ns.mode\":" + arch + "}");
+//            engine.setParameters("{\"che.audio.ains.hl\":" + ANCRange + "}");
         }
     }
 

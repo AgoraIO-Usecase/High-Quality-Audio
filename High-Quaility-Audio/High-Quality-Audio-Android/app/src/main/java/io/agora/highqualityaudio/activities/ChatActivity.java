@@ -38,7 +38,10 @@ import static io.agora.rtc.Constants.REMOTE_AUDIO_REASON_REMOTE_UNMUTED;
 import static io.agora.rtc.Constants.REMOTE_AUDIO_STATE_DECODING;
 import static io.agora.rtc.Constants.REMOTE_AUDIO_STATE_STOPPED;
 
-public class ChatActivity extends BaseActivity implements EventHandler, VoiceEffectListener, AINoiseDialog.AINoiseListener {
+/**
+ * @author cjw
+ */
+public class ChatActivity extends BaseActivity implements EventHandler, VoiceEffectListener {
     private static final String TAG = ChatActivity.class.getSimpleName();
 
     // channel and current user info passed through bundle
@@ -46,9 +49,6 @@ public class ChatActivity extends BaseActivity implements EventHandler, VoiceEff
     private int mBackgroundRes;
     private int mPortraitRes;
     private int mMyUid;
-
-    private int mLastSelectedChange = SoundSettingUtil.EFFECT_NONE;
-    private int mLastSelectedBeautify = SoundSettingUtil.EFFECT_NONE;
 
     private SeatListRecyclerView mSeatRecyclerView;
 
@@ -178,9 +178,6 @@ public class ChatActivity extends BaseActivity implements EventHandler, VoiceEff
                                     case R.id.config_room_voice_changer_point:
                                         openVoiceChangerDialog();
                                         break;
-                                    case R.id.config_room_ai_ns_point:
-                                        openANCDialog();
-                                        break;
                                     case R.id.config_room_btn_quit:
                                         finish();
                                         break;
@@ -192,7 +189,6 @@ public class ChatActivity extends BaseActivity implements EventHandler, VoiceEff
                         dialog.findViewById(R.id.config_room_beautify_voice_point).setOnClickListener(listener);
                         dialog.findViewById(R.id.config_room_voice_effect_point).setOnClickListener(listener);
                         dialog.findViewById(R.id.config_room_voice_changer_point).setOnClickListener(listener);
-                        dialog.findViewById(R.id.config_room_ai_ns_point).setOnClickListener(listener);
                         dialog.findViewById(R.id.config_room_btn_quit).setOnClickListener(listener);
                     }
                 });
@@ -211,12 +207,6 @@ public class ChatActivity extends BaseActivity implements EventHandler, VoiceEff
     }
 
     private void openVoiceChangerDialog() {
-    }
-
-    private void openANCDialog() {
-        AINoiseDialog aiNoiseDialog = new AINoiseDialog(this);
-        aiNoiseDialog.setAiNoiseListener(this);
-        aiNoiseDialog.show();
     }
 
     public void onBackClicked(View view) {
@@ -252,19 +242,13 @@ public class ChatActivity extends BaseActivity implements EventHandler, VoiceEff
     }
 
     private void setEarsBackEnabled(boolean enabled) {
-        rtcEngine().enableInEarMonitoring(enabled);
+        rtcEngine().setParameters("{\"che.audio.morph.earsback\" : " + enabled + "}");
     }
 
     @Override
     public void onVoiceSelect(int firstCategoryId, int secondCategoryId, int index) {
         Log.e(TAG, "firstCategoryId:" + firstCategoryId + ",secondCategoryId:" + secondCategoryId + ",index:" + index);
         SoundSettingUtil.setVoice(rtcEngine(), firstCategoryId, secondCategoryId, index);
-    }
-
-    @Override
-    public void onAction(boolean ANCSwitch, int archIndex, int ANCRange) {
-        Log.e(TAG, "archIndex:" + archIndex + ", ANCRange:" + ANCRange);
-        SoundSettingUtil.setANC(rtcEngine(), ANCSwitch, archIndex, ANCRange);
     }
 
     @Override

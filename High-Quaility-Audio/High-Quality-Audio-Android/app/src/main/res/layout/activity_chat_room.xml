@@ -43,6 +43,7 @@
             android:onClick="onSettingClicked"
             android:padding="@dimen/room_setting_btn_padding"
             android:src="@drawable/ic_settings" />
+
     </RelativeLayout>
 
     <RelativeLayout

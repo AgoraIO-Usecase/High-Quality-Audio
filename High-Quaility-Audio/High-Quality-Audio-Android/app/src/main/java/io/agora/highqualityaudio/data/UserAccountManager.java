@@ -4,19 +4,19 @@ import java.util.Random;
 
 import io.agora.highqualityaudio.utils.Constants;
 
-public enum UserAccountManager
+/**
+ * @author cjw
+ */
+public class UserAccountManager
 {
-    INSTANCE;
+    private static UserAccount mAccount;
 
-    private UserAccount mAccount;
-
-    UserAccountManager()
+    public static UserAccount account()
     {
-        mAccount = new UserAccount();
-    }
-
-    public UserAccount account()
-    {
+        if(mAccount == null)
+        {
+            mAccount = new UserAccount();
+        }
         return mAccount;
     }
 

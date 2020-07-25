@@ -63,7 +63,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             boolean granted = true;
             for (int result : grantResults) {
                 granted = (result == PackageManager.PERMISSION_GRANTED);
-                if (!granted) break;
+                if (!granted) {
+                    break;
+                }
             }
 
             if (granted) {

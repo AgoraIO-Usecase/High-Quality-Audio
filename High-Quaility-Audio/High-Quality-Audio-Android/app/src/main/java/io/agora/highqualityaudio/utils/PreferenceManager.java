@@ -51,8 +51,9 @@ public class PreferenceManager {
     }
 
     private static SharedPreferences getSharedPreferences() throws IllegalStateException {
-        if (sharedPreferences == null)
+        if (sharedPreferences == null) {
             throw new IllegalStateException("PreferenceManager is not initialized. Please call init() before use!");
+        }
         return sharedPreferences;
     }
 }

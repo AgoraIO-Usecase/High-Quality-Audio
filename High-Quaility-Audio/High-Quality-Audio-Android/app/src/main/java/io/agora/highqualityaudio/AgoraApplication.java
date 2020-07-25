@@ -11,7 +11,6 @@ import io.agora.rtc.RtcEngine;
 public class AgoraApplication extends Application
 {
 
-    private final UserAccountManager mAccountManager = UserAccountManager.INSTANCE;
     private RtcEngine mRtcEngine;
     private final AgoraEventHandler mHandler = new AgoraEventHandler();
 
@@ -36,6 +35,7 @@ public class AgoraApplication extends Application
             e.printStackTrace();
         }
         PreferenceManager.init(this);
+        /**取出之前可能存在的设置项并设置进Engine中*/
         SoundSettingUtil.initEngineSoundSetting(mRtcEngine);
     }
 
@@ -48,7 +48,7 @@ public class AgoraApplication extends Application
 
     public UserAccountManager.UserAccount myAccount()
     {
-        return mAccountManager.account();
+        return UserAccountManager.account();
     }
 
     public RtcEngine engine()
