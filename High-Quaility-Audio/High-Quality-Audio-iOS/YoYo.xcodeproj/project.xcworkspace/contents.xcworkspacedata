@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/cavansu/Documents/Agora-ADC-Repository/Samples-Signaling/iOS/Online-PK/Agora-Online-Chatroom-iOS/YoYo.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

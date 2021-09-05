@@ -2,6 +2,7 @@ package io.agora.highqualityaudio.utils;
 
 import java.util.Locale;
 
+import io.agora.rtc.Constants;
 import io.agora.rtc.RtcEngine;
 
 public class SoundEffectUtil {
@@ -34,6 +35,8 @@ public class SoundEffectUtil {
 
         engine.setParameters(String.format(Locale.getDefault(),
                 "{\"che.audio.morph.voice_changer\": %d}", type));
+        //TODO need to use new engine.setVoiceBeautifierPreset(type);
+
     }
 
     public static void changePreset(RtcEngine engine, int type) {
@@ -43,5 +46,8 @@ public class SoundEffectUtil {
 
         engine.setParameters(String.format(Locale.getDefault(),
                 "{\"che.audio.morph.reverb_preset\": %d}", type));
+        //TODO need to use new engine.setAudioEffectPreset(type);
     }
+
+    //TODO need to add new engine.setVoiceConversion() options
 }

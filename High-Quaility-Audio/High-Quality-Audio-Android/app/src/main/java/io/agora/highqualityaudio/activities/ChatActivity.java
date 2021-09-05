@@ -325,8 +325,9 @@ public class ChatActivity extends BaseActivity implements EventHandler {
 
         // High quality audio parameters
         rtcEngine().setParameters("{\"che.audio.specify.codec\": \"HEAAC_2ch\"}");
+        rtcEngine().setParameters("{\"che.audio.bitrate.force\": \"64000\"}");
         // Enable stereo
-        rtcEngine().setParameters("{\"che.audio.stereo\": true}");
+        rtcEngine().setParameters("{\"che.audio.stereo.capture\": true}");
 
         rtcEngine().setLogFile(FileUtil.initializeLogFile(this));
         rtcEngine().setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_AUDIENCE);

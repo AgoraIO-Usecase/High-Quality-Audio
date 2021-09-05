@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import AgoraRtcKit
 
 protocol VoiceBeautifyVCDelegate: NSObjectProtocol {
-    func voiceBeautifyVC(_ vc: VoiceBeautifyViewController, didSelected role: BeautyVoiceType, roleIndex:Int)
+    func voiceBeautifyVC(_ vc: VoiceBeautifyViewController, didSelected role: AgoraVoiceBeautifierPreset, roleIndex:Int)
     func voiceBeautifyVCDidCancel(_ vc: VoiceBeautifyViewController)
 }
 
 class VoiceBeautifyViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private lazy var rolesList: [BeautyVoiceType] = EffectType.beautyVoiceList()
+    private lazy var rolesList: [AgoraVoiceBeautifierPreset] = EffectType.beautyVoiceList()
     weak var delegate: VoiceBeautifyVCDelegate?
     var selectedIndex: Int?
     
