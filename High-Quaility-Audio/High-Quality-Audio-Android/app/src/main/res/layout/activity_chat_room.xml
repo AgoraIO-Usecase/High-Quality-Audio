@@ -90,6 +90,8 @@
         android:id="@+id/chat_room_recycler_msg_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:requiresFadingEdge="vertical"
         android:layout_above="@id/chat_room_msg_layout"
         android:layout_below="@id/chat_room_recycler_participants"
         android:layout_marginLeft="@dimen/room_message_view_margin"

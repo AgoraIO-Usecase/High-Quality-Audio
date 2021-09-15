@@ -1,24 +1,25 @@
 //
-//  VoiceChangerViewController.swift
+//  VoiceConversionViewController.swift
 //  YoYo
 //
-//  Created by CavanSu on 2018/6/25.
-//  Copyright © 2018 CavanSu. All rights reserved.
+//  Created by xianing on 2021/9/5.
+//  Copyright © 2021 CavanSu. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import AgoraRtcKit
 
-protocol VoiceChangerVCDelegate: NSObjectProtocol {
-    func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected role: AgoraAudioEffectPreset, roleIndex:Int)
-    func voiceChanngerVCDidCancel(_ vc: VoiceChangerViewController)
+
+protocol VoiceConversionVCDelegate: NSObjectProtocol {
+    func VoiceConversionVC(_ vc: VoiceConversionViewController, didSelected role: AgoraVoiceConversionPreset, roleIndex:Int)
+    func VoiceConversionVCDidCancel(_ vc: VoiceConversionViewController)
 }
 
-class VoiceChangerViewController: UIViewController {
+class VoiceConversionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private lazy var rolesList: [AgoraAudioEffectPreset] = EffectType.rolesList()
-    weak var delegate: VoiceChangerVCDelegate?
+    private lazy var rolesList: [AgoraVoiceConversionPreset] = EffectType.conversionList()
+    weak var delegate: VoiceConversionVCDelegate?
     var selectedIndex: Int?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,20 +36,20 @@ class VoiceChangerViewController: UIViewController {
     @IBAction func doConfirmPressed(_ sender: UIButton) {
         if let selectedIndex = selectedIndex {
             let role = rolesList[selectedIndex]
-            delegate?.voiceChangerVC(self, didSelected: role, roleIndex: selectedIndex)
+            delegate?.VoiceConversionVC(self, didSelected: role, roleIndex: selectedIndex)
         } else {
-            delegate?.voiceChanngerVCDidCancel(self)
+            delegate?.VoiceConversionVCDidCancel(self)
         }
     }
     
     @IBAction func doCancelPressed(_ sender: UIButton) {
-        delegate?.voiceChanngerVCDidCancel(self)
+        delegate?.VoiceConversionVCDidCancel(self)
     }
 }
 
-private extension VoiceChangerViewController {
+private extension VoiceConversionViewController {
     func updateViews() {
-        self.navigationItem.title = "音效"
+        self.navigationItem.title = "变声"
     }
     
     func updateCollectionViewLayout() {
@@ -63,7 +64,7 @@ private extension VoiceChangerViewController {
     }
 }
 
-extension VoiceChangerViewController: UICollectionViewDataSource {
+extension VoiceConversionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return rolesList.count
     }
@@ -82,7 +83,7 @@ extension VoiceChangerViewController: UICollectionViewDataSource {
     }
 }
 
-extension VoiceChangerViewController: UICollectionViewDelegate {
+extension VoiceConversionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let selected = selectedIndex, selected == indexPath.item {
             let index = IndexPath(item: selected, section: 0)
@@ -103,3 +104,4 @@ extension VoiceChangerViewController: UICollectionViewDelegate {
         collectionView.reloadItems(at: [indexPath])
     }
 }
+

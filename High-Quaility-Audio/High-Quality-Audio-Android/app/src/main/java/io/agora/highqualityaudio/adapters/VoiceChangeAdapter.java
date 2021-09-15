@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.ArrayRes;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import io.agora.highqualityaudio.R;
 import io.agora.highqualityaudio.data.ChangeVoiceItem;
 
 public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.ViewHolder> {
-    private LayoutInflater mInflater;
+    private final LayoutInflater mInflater;
 
     private List<ChangeVoiceItem> mChangeVoiceItems;
 
@@ -33,21 +34,22 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
         }
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.change_voice_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         final ChangeVoiceItem item = mChangeVoiceItems.get(position);
         holder.option.setText(item.getTitle());
         holder.option.setSelected(item.isSelected());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setSelectedPosition(position);
+                setSelectedPosition(holder.getAdapterPosition());
             }
         });
     }
@@ -57,17 +59,14 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
         return mChangeVoiceItems.size();
     }
 
-    private void setSelected(int position, boolean selected) {
-        if (position < 0 || position >= mChangeVoiceItems.size()) return;
-        mChangeVoiceItems.get(position).setSelected(selected);
-        notifyDataSetChanged();
-    }
-
     public void setSelectedPosition(int position) {
-        for (int i = 0; i < mChangeVoiceItems.size(); i++) {
-            mChangeVoiceItems.get(i).setSelected(i == position);
+        int selected = getSelectedPosition();
+        if (selected>=0 && selected < mChangeVoiceItems.size()) {
+            mChangeVoiceItems.get(selected).setSelected(false);
+            notifyItemChanged(selected);
         }
-        notifyDataSetChanged();
+        mChangeVoiceItems.get(position).setSelected(true);
+        notifyItemChanged(position);
     }
 
     public int getSelectedPosition() {
@@ -83,7 +82,7 @@ public class VoiceChangeAdapter extends RecyclerView.Adapter<VoiceChangeAdapter.
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView option;
+        private final TextView option;
 
         ViewHolder(View view) {
             super(view);

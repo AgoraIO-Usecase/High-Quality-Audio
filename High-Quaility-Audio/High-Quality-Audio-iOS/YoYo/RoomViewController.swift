@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AgoraRtcKit
 
 class RoomViewController: UIViewController {
     @IBOutlet weak var currenHeadImageView: UIImageView!
@@ -135,6 +136,7 @@ class RoomViewController: UIViewController {
     var info: RoomInfo!
     var voiceRoleIndex: Int?
     var voiceBeautifyIndex: Int?
+    var voiceConversionIndex: Int?
     var agoraMediaKit: AgoraRtcEngineKit!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -217,9 +219,14 @@ private extension RoomViewController {
         agoraMediaKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.appId, delegate: self)
         agoraMediaKit.setChannelProfile(.liveBroadcasting)
         agoraMediaKit.enableAudioVolumeIndication(1000, smooth: 3, report_vad: false)
-        agoraMediaKit.setAudioProfile(.default, scenario: .gameStreaming)
+        agoraMediaKit.setAudioProfile(.musicHighQualityStereo, scenario: .gameStreaming)
+        
+        // High quality audio parameters
         agoraMediaKit.setParameters("{\"che.audio.specify.codec\": \"HEAAC_2ch\"}")
-        debugLog(log: "getSdkVersion: \(AgoraRtcEngineKit.getSdkVersion())")
+        agoraMediaKit.setParameters("{\"che.audio.bitrate.force\": \"64000\"}")
+        
+        // Enable stereo
+        agoraMediaKit.setParameters("{\"che.audio.stereo.capture\": true}")
     }
     
     func mediaJoinChannel() {
@@ -328,6 +335,14 @@ extension RoomViewController {
             }
             voiceVC.delegate = self
             break
+        case "VoiceConversionViewController":
+            vc = story.instantiateViewController(withIdentifier: "VoiceConversionViewController")
+            let voiceVC = vc as! VoiceConversionViewController
+            if let voiceBeautifyIndex = voiceConversionIndex {
+                voiceVC.selectedIndex = voiceBeautifyIndex
+            }
+            voiceVC.delegate = self
+            break
         default:
             break
         }
@@ -354,6 +369,10 @@ extension RoomViewController: SettingVCDelegate {
     
     func settingVCDidSelectedVoiceBeautify(_ vc: SettingViewController) {
         pushSubFunctionsInSettingView(vcId: "VoiceBeautifyViewController")
+    }
+    
+    func settingVCDidSelectedVoiceConversion(_ vc: SettingViewController) {
+        pushSubFunctionsInSettingView(vcId: "VoiceConversionViewController")
     }
     
     func settingVCDidSelectedExitRoom(_ vc: SettingViewController) {
@@ -513,7 +532,7 @@ extension RoomViewController: AgoraRtcEngineDelegate {
 // MARK: VoiceChangerVCDelegate
 // MARK:
 extension RoomViewController: VoiceChangerVCDelegate {
-    func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected role: EffectRoles, roleIndex: Int) {
+    func voiceChangerVC(_ vc: VoiceChangerViewController, didSelected role: AgoraAudioEffectPreset, roleIndex: Int) {
         voiceRoleIndex = roleIndex
         role.character(with: agoraMediaKit)
         settingBackGroundViewShow(isShow: false)
@@ -522,7 +541,7 @@ extension RoomViewController: VoiceChangerVCDelegate {
     
     func voiceChanngerVCDidCancel(_ vc: VoiceChangerViewController) {
         if let _ = voiceRoleIndex {
-            EffectRoles.fmDefault(with: agoraMediaKit)
+            AgoraAudioEffectPreset.fmDefault(with: agoraMediaKit)
             self.voiceRoleIndex = nil
         }
         
@@ -534,7 +553,7 @@ extension RoomViewController: VoiceChangerVCDelegate {
 // MARK: VoiceBeautifyVCDelegate
 // MARK:
 extension RoomViewController: VoiceBeautifyVCDelegate {
-    func voiceBeautifyVC(_ vc: VoiceBeautifyViewController, didSelected role: BeautyVoiceType, roleIndex: Int) {
+    func voiceBeautifyVC(_ vc: VoiceBeautifyViewController, didSelected role: AgoraVoiceBeautifierPreset, roleIndex: Int) {
         voiceBeautifyIndex = roleIndex
         role.character(with: agoraMediaKit)
         settingBackGroundViewShow(isShow: false)
@@ -543,12 +562,32 @@ extension RoomViewController: VoiceBeautifyVCDelegate {
     
     func voiceBeautifyVCDidCancel(_ vc: VoiceBeautifyViewController) {
         if let _ = voiceBeautifyIndex {
-            BeautyVoiceType.fmDefault(with: agoraMediaKit)
+            AgoraVoiceBeautifierPreset.fmDefault(with: agoraMediaKit)
             self.voiceBeautifyIndex = nil
         }
         
         vc.navigationController?.popViewController(animated: true)
     }
+}
+
+extension RoomViewController: VoiceConversionVCDelegate {
+    func VoiceConversionVC(_ vc: VoiceConversionViewController, didSelected role: AgoraVoiceConversionPreset, roleIndex: Int) {
+        voiceConversionIndex = roleIndex
+        role.character(with: agoraMediaKit)
+        settingBackGroundViewShow(isShow: false)
+        vc.navigationController?.popViewController(animated: true)
+    }
+    
+    func VoiceConversionVCDidCancel(_ vc: VoiceConversionViewController) {
+        if let _ = voiceConversionIndex {
+            AgoraVoiceConversionPreset.fmDefault(with: agoraMediaKit)
+            self.voiceConversionIndex = nil
+        }
+        
+        vc.navigationController?.popViewController(animated: true)
+    }
+    
+    
 }
 
 extension RoomViewController: BroadcasterSeatVCDelegate {

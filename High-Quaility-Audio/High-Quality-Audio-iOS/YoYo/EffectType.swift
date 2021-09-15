@@ -7,115 +7,147 @@
 //
 
 import UIKit
+import AgoraRtcKit
 
 protocol CSDescriptable {
     func description() -> String
 }
 
 class EffectType {
-    static func rolesList() -> [EffectRoles] {
-        return [.Default,
-                .KTV,
-                .VocalConcert,
-                .OldMan,
-                .BabyGirl,
-                .RecordingRoom,
-                .Fashion,
-                .RB,
-                .Phonograph]
+    static func rolesList() -> [AgoraAudioEffectPreset] {
+        return [.audioEffectOff,
+                .voiceChangerEffectBoy,
+                .voiceChangerEffectOldMan,
+                .voiceChangerEffectGirl,
+                .voiceChangerEffectUncle,
+                .voiceChangerEffectSister,
+                .voiceChangerEffectPigKing,
+                .voiceChangerEffectHulk,
+                .roomAcousticsKTV,
+                .roomAcousticsVocalConcert,
+                .roomAcousticsStudio,
+                .roomAcousticsPhonograph,
+                .roomAcousticsSpacial,
+                .roomAcousticsEthereal,
+                .styleTransformationPopular,
+                .styleTransformationRnB]
     }
-    static func beautyVoiceList() -> [BeautyVoiceType] {
-        return [.Default,
-                .DeepVoice,
-                .LowVoice,
-                .MellowVoice,
-                .FakeVoice,
-                .FullVoice,
-                .ClearVoice,
-                .HighVoice,
-                .LoudVoice,
-                .EmptyVoice]
+    static func beautyVoiceList() -> [AgoraVoiceBeautifierPreset] {
+        return [.voiceBeautifierOff,
+                .chatBeautifierMagnetic,
+                .chatBeautifierFresh,
+                .chatBeautifierVitality,
+                .timbreTransformationVigorous,
+                .timbreTransformationDeep,
+                .timbreTransformationMellow,
+                .timbreTransformationFalsetto,
+                .timbreTransformationFull,
+                .timbreTransformationClear,
+                .timbreTransformationResounding,
+                .timbreTransformationRinging]
+    }
+    
+    static func conversionList() -> [AgoraVoiceConversionPreset] {
+        return [.conversionOff,
+                .changerBass,
+                .changerNeutral,
+                .changerSolid,
+                .changerSweet]
     }
 }
 
-enum EffectRoles: Int, CaseIterable {
-    case Default
-    case KTV
-    case VocalConcert
-    case OldMan
-    case BabyGirl
-    case RecordingRoom
-    case Fashion = 7
-    case RB
-    case Phonograph
-}
-
-enum BeautyVoiceType: Int, CaseIterable {
-    case Default = 0
-    case DeepVoice = 7
-    case LowVoice
-    case MellowVoice
-    case FakeVoice
-    case FullVoice
-    case ClearVoice
-    case HighVoice
-    case LoudVoice
-    case EmptyVoice
-}
-
-extension BeautyVoiceType: CSDescriptable {
+extension AgoraVoiceConversionPreset {
     func description() -> String {
         switch self {
-        case .Default:         return "原声"
-        case .DeepVoice:       return "浑厚"
-        case .LowVoice:        return "低沉"
-        case .MellowVoice:     return "圆润"
-        case .FakeVoice:       return "假音"
-        case .FullVoice:       return "饱满"
-        case .ClearVoice:      return "清澈"
-        case .HighVoice:       return "高亢"
-        case .LoudVoice:       return "嘹亮"
-        case .EmptyVoice:      return "空旷"
+        case .conversionOff:    return "原声"
+        case .changerBass:      return "低沉"
+        case .changerNeutral:   return "中性"
+        case .changerSolid:     return "稳重"
+        case .changerSweet:     return "甜美"
+        default:
+            return "原声"
         }
     }
     
     static func fmDefault(with agoraKit: AgoraRtcEngineKit) {
-        beautifulVoice(with: agoraKit, type: BeautyVoiceType.Default.rawValue)
+        conversion(with: agoraKit, type: .conversionOff)
     }
 
-    static func beautifulVoice(with agoraKit: AgoraRtcEngineKit, type:Int) {
-        agoraKit.setParameters("{\"che.audio.morph.voice_changer\": \(type)}")
+    static func conversion(with agoraKit: AgoraRtcEngineKit, type:AgoraVoiceConversionPreset) {
+        agoraKit.setVoiceConversionPreset(type)
     }
 
     func character(with agoraKit: AgoraRtcEngineKit) {
-        BeautyVoiceType.beautifulVoice(with: agoraKit, type: self.rawValue)
+        AgoraVoiceConversionPreset.conversion(with: agoraKit, type: self)
     }
 }
 
-extension EffectRoles: CSDescriptable {
+extension AgoraVoiceBeautifierPreset {
     func description() -> String {
         switch self {
-        case .Default:          return "原声"
-        case .KTV:              return "KTV"
-        case .VocalConcert:     return "演唱会"
-        case .OldMan:           return "大叔"
-        case .BabyGirl:         return "小姐姐"
-        case .RecordingRoom:    return "录音棚"
-        case .Fashion:          return "流行"
-        case .RB:               return "R&B"
-        case .Phonograph:       return "留声机"
+        case .voiceBeautifierOff:               return "原声"
+        case .chatBeautifierMagnetic:           return "磁性"
+        case .chatBeautifierFresh:              return "清新"
+        case .chatBeautifierVitality:           return "活力"
+        case .timbreTransformationVigorous:     return "浑厚"
+        case .timbreTransformationDeep:         return "低沉"
+        case .timbreTransformationMellow:       return "圆润"
+        case .timbreTransformationFalsetto:     return "假音"
+        case .timbreTransformationFull:         return "饱满"
+        case .timbreTransformationClear:        return "清澈"
+        case .timbreTransformationResounding:   return "高亢"
+        case .timbreTransformationRinging:      return "嘹亮"
+        default:
+            return "原声"
         }
     }
     
     static func fmDefault(with agoraKit: AgoraRtcEngineKit) {
-        changeVoice(with: agoraKit, type: EffectRoles.Default.rawValue)
+        beautifulVoice(with: agoraKit, type: .voiceBeautifierOff)
     }
 
-    static func changeVoice(with agoraKit: AgoraRtcEngineKit, type:Int) {
-        agoraKit.setParameters("{\"che.audio.morph.reverb_preset\": \(type)}")
+    static func beautifulVoice(with agoraKit: AgoraRtcEngineKit, type:AgoraVoiceBeautifierPreset) {
+        agoraKit.setVoiceBeautifierPreset(type)
     }
 
     func character(with agoraKit: AgoraRtcEngineKit) {
-        EffectRoles.changeVoice(with: agoraKit, type: self.rawValue)
+        AgoraVoiceBeautifierPreset.beautifulVoice(with: agoraKit, type: self)
+    }
+}
+
+extension AgoraAudioEffectPreset {
+    func description() -> String {
+        switch self {
+        case .audioEffectOff:                   return "原声"
+        case .voiceChangerEffectBoy:            return "男孩"
+        case .voiceChangerEffectOldMan:         return "老年男性"
+        case .voiceChangerEffectGirl:           return "女孩"
+        case .voiceChangerEffectUncle:          return "大叔"
+        case .voiceChangerEffectSister:         return "少女"
+        case .voiceChangerEffectPigKing:        return "猪八戒"
+        case .voiceChangerEffectHulk:           return "绿巨人"
+        case .roomAcousticsKTV:                 return "KTV"
+        case .roomAcousticsVocalConcert:        return "演唱会"
+        case .roomAcousticsStudio:              return "录音棚"
+        case .roomAcousticsPhonograph:          return "留声机"
+        case .roomAcousticsSpacial:             return "空旷"
+        case .roomAcousticsEthereal:            return "空灵"
+        case .styleTransformationPopular:       return "流行"
+        case .styleTransformationRnB:           return "R&B"
+        default:
+            return "原声"
+        }
+    }
+    
+    static func fmDefault(with agoraKit: AgoraRtcEngineKit) {
+        changeVoice(with: agoraKit, type: .audioEffectOff)
+    }
+
+    static func changeVoice(with agoraKit: AgoraRtcEngineKit, type:AgoraAudioEffectPreset) {
+        agoraKit.setAudioEffectPreset(type)
+    }
+
+    func character(with agoraKit: AgoraRtcEngineKit) {
+        AgoraAudioEffectPreset.changeVoice(with: agoraKit, type: self)
     }
 }
