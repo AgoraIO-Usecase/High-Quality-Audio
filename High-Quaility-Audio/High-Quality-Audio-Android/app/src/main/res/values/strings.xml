@@ -23,33 +23,50 @@
     <string name="other_joined">User %d has taken a seat</string>
     <string name="other_left_seat">User %d has left a seat</string>
 
-    <string-array name="voice_change_items">
-        <item>None</item>
-        <item>Thick</item>
-        <item>Low</item>
-        <item>Round</item>
+    <string-array name="voice_effect_items">
+        <item>Original</item>
+        <item>Boy</item>
+        <item>OldMan</item>
+        <item>Girl</item>
+        <item>Uncle</item>
+        <item>Sister</item>
+        <item>PigKing</item>
+        <item>Hulk</item>
+        <item>KTV</item>
+        <item>Concert</item>
+        <item>Studio</item>
+        <item>Phonograph</item>
+        <item>Ethereal</item>
+        <item>Spacial</item>
+        <item>Popular</item>
+        <item>R&amp;B</item>
+    </string-array>
+
+    <string-array name="voice_beautifier_items">
+        <item>Original</item>
+        <item>Magnetic</item>
+        <item>Fresh</item>
+        <item>Vitality</item>
+        <item>Vigorous</item>
+        <item>Deep</item>
+        <item>Mellow</item>
         <item>Falsetto</item>
         <item>Full</item>
         <item>Clear</item>
         <item>Resounding</item>
-        <item>Loud</item>
-        <item>OpenAir</item>
+        <item>Ringing</item>
     </string-array>
 
-    <string-array name="voice_preset_items">
-        <item>None</item>
-        <item>KTV</item>
-        <item>Live</item>
-        <item>Uncle</item>
-        <item>Girl</item>
-        <item>Studio</item>
-        <item>Pop</item>
-        <item>R&amp;B</item>
-        <item>Phonograph</item>
+    <string-array name="voice_conversion_items">
+        <item>Original</item>
+        <item>Bass</item>
+        <item>Neutral</item>
+        <item>Solid</item>
+        <item>Sweet</item>
     </string-array>
-
     <!-- Setting dialog -->
     <string name="setting_dialog_title">Room Settings</string>
+    <string name="setting_dialog_voice_effect">Voice Effect</string>
     <string name="setting_dialog_change_voice">Change Voice</string>
     <string name="setting_dialog_beautify_voice">Beautify Voice</string>
     <string name="setting_dialog_leave_room">Leave Room</string>
