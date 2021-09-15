@@ -4,13 +4,6 @@
 
     <!-- 聊天室列表 -->
     <string name="channel_list_title">聊天室</string>
-    <string-array name="channel_titles">
-        <item>VoiceDemo1</item>
-        <item>VoiceDemo2</item>
-        <item>VoiceDemo3</item>
-        <item>VoiceDemo4</item>
-        <item>VoiceDemo5</item>
-    </string-array>
 
     <!-- 聊天室 -->
     <string name="room_message_edit_hint">说点什么吧&#8230;</string>
@@ -23,8 +16,30 @@
     <string name="other_joined">用户 %d 加入麦位</string>
     <string name="other_left_seat">用户 %d 已离开麦位</string>
 
-    <string-array name="voice_change_items">
-        <item>无</item>
+    <string-array name="voice_effect_items">
+        <item>原生</item>
+        <item>男孩</item>
+        <item>爷爷</item>
+        <item>女孩</item>
+        <item>大叔</item>
+        <item>少女</item>
+        <item>猪八戒</item>
+        <item>绿巨人</item>
+        <item>KTV</item>
+        <item>演唱会</item>
+        <item>录音棚</item>
+        <item>留声机</item>
+        <item>空旷</item>
+        <item>空灵</item>
+        <item>流行</item>
+        <item>R&amp;B</item>
+    </string-array>
+
+    <string-array name="voice_beautifier_items">
+        <item>原声</item>
+        <item>磁性</item>
+        <item>清新</item>
+        <item>活力</item>
         <item>浑厚</item>
         <item>低沉</item>
         <item>圆润</item>
@@ -33,23 +48,18 @@
         <item>清澈</item>
         <item>高亢</item>
         <item>嘹亮</item>
-        <item>空旷</item>
     </string-array>
 
-    <string-array name="voice_preset_items">
-        <item>无</item>
-        <item>KTV</item>
-        <item>演唱会</item>
-        <item>大叔</item>
-        <item>小姐姐</item>
-        <item>录音棚</item>
-        <item>流行</item>
-        <item>R&amp;B</item>
-        <item>留声机</item>
+    <string-array name="voice_conversion_items">
+        <item>原声</item>
+        <item>低沉</item>
+        <item>中性</item>
+        <item>稳重</item>
+        <item>甜美</item>
     </string-array>
-
     <!-- Setting dialog -->
     <string name="setting_dialog_title">房间设置</string>
+    <string name="setting_dialog_voice_effect">音效</string>
     <string name="setting_dialog_change_voice">变声</string>
     <string name="setting_dialog_beautify_voice">美声</string>
     <string name="setting_dialog_leave_room">离开房间</string>
